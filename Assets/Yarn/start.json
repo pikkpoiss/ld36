@@ -2,10 +2,10 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Hello there!  Booting up...\n[[./foo|Foo]]\n[[./bar|Bar]]\n<<if $visited_bar is 1>>\n[[./bar.hacked|BarHacked]]\n<<endif>>\n",
+		"body": "Hello there!  Booting up...\n[[./foo|Foo]]\n[[./bar|Bar]]\n[[./qux|Qux]]\n<<if $visited_bar is 1>>\n[[./bar.hacked|BarHacked]]\n<<endif>>\n",
 		"position": {
 			"x": 540,
-			"y": 261
+			"y": 267
 		},
 		"colorID": 0
 	},
@@ -14,8 +14,8 @@
 		"tags": "",
 		"body": "Foo.exe\n=======\nFoo is fun.\n[[Start]]",
 		"position": {
-			"x": 322,
-			"y": 525
+			"x": 317,
+			"y": 539
 		},
 		"colorID": 0
 	},
@@ -38,5 +38,25 @@
 			"y": 535
 		},
 		"colorID": 0
+	},
+	{
+		"title": "Qux",
+		"tags": "",
+		"body": "<<start DoomClock 30>>\n\nOoooh, Qux\n\n...there's something you should know about qux...\n\nHope you can get out!\n\n[[./qux|Qux]]\n[[./quxit|Quxit]]",
+		"position": {
+			"x": 899,
+			"y": 264
+		},
+		"colorID": 1
+	},
+	{
+		"title": "Quxit",
+		"tags": "",
+		"body": "<<stop DoomClock>>\n\nWhew, that was close!\n\n[[Start]]",
+		"position": {
+			"x": 895,
+			"y": 529
+		},
+		"colorID": 1
 	}
 ]
