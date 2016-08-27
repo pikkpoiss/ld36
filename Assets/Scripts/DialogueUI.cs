@@ -31,6 +31,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
   }
 
   void Awake() {
+    lineText.text = "";
     SetDialogueContainerActive(false);
     SetContinuePromptActive(false);
     foreach (var button in optionButtons) {
@@ -74,24 +75,25 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
 
   public override IEnumerator RunLine(Yarn.Line line) {
     lineText.gameObject.SetActive(true);
-    var renderedText = CheckVars(line.text);
+    var renderedText = "\n" + CheckVars(line.text);
     if (textSpeed > 0.0f) {
       var stringBuilder = new StringBuilder();
+      stringBuilder.Append(lineText.text);
       foreach (char c in renderedText) {
         stringBuilder.Append(c);
         lineText.text = stringBuilder.ToString();
         yield return new WaitForSeconds(textSpeed);
       }
     } else {
-      lineText.text = renderedText;
+      lineText.text = lineText.text + renderedText;
     }
-    SetContinuePromptActive(true);
+    //SetContinuePromptActive(true);
     //yield return new WaitForSeconds(2.0f);
-    while (Input.anyKeyDown == false) {
-      yield return null;
-    }
-    lineText.gameObject.SetActive(false);
-    SetContinuePromptActive(false);
+    //while (Input.anyKeyDown == false) {
+    //  yield return null;
+    //}
+    //lineText.gameObject.SetActive(false);
+    //SetContinuePromptActive(false);
   }
 
   public override IEnumerator RunOptions(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser) {
@@ -117,6 +119,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
   public void SetOption(int selectedOption) {
     SetSelectedOption(selectedOption);
     SetSelectedOption = null; 
+    lineText.text = "";
   }
 
   public override IEnumerator RunCommand(Yarn.Command command) {
@@ -135,6 +138,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
 
   public override IEnumerator DialogueComplete() {
     Debug.Log("Complete!");
+    lineText.gameObject.SetActive(false);
+    SetContinuePromptActive(false);
     SetDialogueContainerActive(false);
     if (gameControlsContainer != null) {
       gameControlsContainer.gameObject.SetActive(true);
