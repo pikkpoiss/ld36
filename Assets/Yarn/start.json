@@ -2,7 +2,7 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Hello there!  Booting up...\n[[./foo|Foo]]\n[[./bar|Bar]]",
+		"body": "Hello there!  Booting up...\n[[./foo|Foo]]\n[[./bar|Bar]]\n<<if $visited_bar is 1>>\n[[./bar.hacked|BarHacked]]\n<<endif>>\n",
 		"position": {
 			"x": 540,
 			"y": 261
@@ -22,10 +22,20 @@
 	{
 		"title": "Bar",
 		"tags": "",
-		"body": "Bar.exe\n=======\nBar is going places!\n[[Start]]",
+		"body": "Bar.exe\n=======\nBar is going places!\n<<set $visited_bar to 1>>\n[[Start]]",
 		"position": {
-			"x": 749,
-			"y": 523
+			"x": 579,
+			"y": 534
+		},
+		"colorID": 0
+	},
+	{
+		"title": "BarHacked",
+		"tags": "",
+		"body": "Bar.exe.hax0r3d\n===============\nRoot mode!!!!!!\n[[Start]]",
+		"position": {
+			"x": 836,
+			"y": 535
 		},
 		"colorID": 0
 	}
