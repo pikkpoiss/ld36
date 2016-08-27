@@ -13,6 +13,7 @@ ModelImporter:
     100010: MonitorLED1
     100012: MonitorLED2
     100014: MonitorLED3
+    100016: Projection1Mesh
     400000: Case
     400002: //RootNode
     400004: Monitor
@@ -21,6 +22,7 @@ ModelImporter:
     400010: MonitorLED1
     400012: MonitorLED2
     400014: MonitorLED3
+    400016: Projection1Mesh
     2300000: Case
     2300002: Monitor
     2300004: Screen
@@ -28,6 +30,7 @@ ModelImporter:
     2300008: MonitorLED1
     2300010: MonitorLED2
     2300012: MonitorLED3
+    2300014: Projection1Mesh
     3300000: Case
     3300002: Monitor
     3300004: Screen
@@ -35,6 +38,7 @@ ModelImporter:
     3300008: MonitorLED1
     3300010: MonitorLED2
     3300012: MonitorLED3
+    3300014: Projection1Mesh
     4300000: Monitor
     4300002: Case
     4300004: Screen
@@ -42,6 +46,7 @@ ModelImporter:
     4300008: MonitorLED3
     4300010: MonitorLED2
     4300012: MonitorLED1
+    4300014: Projection1Mesh
     7400000: Default Take
     9500000: //RootNode
   materials:
