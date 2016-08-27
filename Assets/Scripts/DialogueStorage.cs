@@ -4,6 +4,8 @@ using UnityEngine;
 using Yarn.Unity;
 
 public class DialogueStorage : VariableStorageBehaviour {
+  public Computer computer;
+
   Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
 
   [System.Serializable]
@@ -58,6 +60,13 @@ public class DialogueStorage : VariableStorageBehaviour {
     
   public override void SetValue(string variableName, Yarn.Value value) {
     variables[variableName] = new Yarn.Value(value);
+    if (variableName.StartsWith("$computer_")) {
+      switch (value.type) {
+        case Yarn.Value.Type.Bool:
+          computer.SetValue(variableName, value.AsBool);
+          break;
+      }
+    }
   }
 
   public override Yarn.Value GetValue(string variableName) {

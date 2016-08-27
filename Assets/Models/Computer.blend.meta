@@ -9,19 +9,39 @@ ModelImporter:
     100002: //RootNode
     100004: Monitor
     100006: Screen
+    100008: MonitorLEDs
+    100010: MonitorLED1
+    100012: MonitorLED2
+    100014: MonitorLED3
     400000: Case
     400002: //RootNode
     400004: Monitor
     400006: Screen
+    400008: MonitorLEDs
+    400010: MonitorLED1
+    400012: MonitorLED2
+    400014: MonitorLED3
     2300000: Case
     2300002: Monitor
     2300004: Screen
+    2300006: MonitorLEDs
+    2300008: MonitorLED1
+    2300010: MonitorLED2
+    2300012: MonitorLED3
     3300000: Case
     3300002: Monitor
     3300004: Screen
+    3300006: MonitorLEDs
+    3300008: MonitorLED1
+    3300010: MonitorLED2
+    3300012: MonitorLED3
     4300000: Monitor
     4300002: Case
     4300004: Screen
+    4300006: MonitorLEDs
+    4300008: MonitorLED3
+    4300010: MonitorLED2
+    4300012: MonitorLED1
     7400000: Default Take
     9500000: //RootNode
   materials:

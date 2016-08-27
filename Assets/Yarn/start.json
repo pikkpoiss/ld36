@@ -1,18 +1,18 @@
 [
 	{
-		"title": "Start",
+		"title": "Prompt",
 		"tags": "",
-		"body": "Hello there!  Booting up...\n[[./foo|Foo]]\n[[./bar|Bar]]\n[[./qux|Qux]]\n<<if $visited_bar is 1>>\n[[./bar.hacked|BarHacked]]\n<<endif>>\n",
+		"body": "> \n[[cd /dev|Dev]]\n[[./bar|Bar]]\n[[./qux|Qux]]\n<<if $visited_bar is 1>>\n[[./bar.hacked|BarHacked]]\n<<endif>>\n",
 		"position": {
-			"x": 540,
-			"y": 267
+			"x": 546,
+			"y": 127
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Foo",
 		"tags": "",
-		"body": "Foo.exe\n=======\nFoo is fun.\n[[Start]]",
+		"body": "<<set $computer_led_1 to true >>\nFoo.exe\n=======\nFoo is fun.\n[[Prompt]]",
 		"position": {
 			"x": 317,
 			"y": 539
@@ -22,7 +22,7 @@
 	{
 		"title": "Bar",
 		"tags": "",
-		"body": "Bar.exe\n=======\nBar is going places!\n<<set $visited_bar to 1>>\n[[Start]]",
+		"body": "Bar.exe\n=======\nBar is going places!\n<<set $visited_bar to 1>>\n[[Prompt]]",
 		"position": {
 			"x": 579,
 			"y": 534
@@ -32,10 +32,10 @@
 	{
 		"title": "BarHacked",
 		"tags": "",
-		"body": "Bar.exe.hax0r3d\n===============\nRoot mode!!!!!!\n[[Start]]",
+		"body": "Bar.exe.hax0r3d\n===============\nRoot mode!!!!!!\n[[Prompt]]",
 		"position": {
 			"x": 836,
-			"y": 535
+			"y": 536
 		},
 		"colorID": 0
 	},
@@ -44,19 +44,39 @@
 		"tags": "",
 		"body": "<<start DoomClock 30>>\n\nOoooh, Qux\n\n...there's something you should know about qux...\n\nHope you can get out!\n\n[[./qux|Qux]]\n[[./quxit|Quxit]]",
 		"position": {
-			"x": 899,
-			"y": 264
+			"x": 1115,
+			"y": 291
 		},
 		"colorID": 1
 	},
 	{
 		"title": "Quxit",
 		"tags": "",
-		"body": "<<stop DoomClock>>\n\nWhew, that was close!\n\n[[Start]]",
+		"body": "<<stop DoomClock>>\n\nWhew, that was close!\n\n[[Prompt]]",
 		"position": {
-			"x": 895,
-			"y": 529
+			"x": 1116,
+			"y": 561
 		},
 		"colorID": 1
+	},
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "Booting up....\n\n[[Prompt]]",
+		"position": {
+			"x": 546,
+			"y": -104
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Dev",
+		"tags": "",
+		"body": "-> ./led 0 0 <<if $computer_led_1 is true>>\n   <<set $computer_led_1 to false>>\n   [[Dev]]\n-> ./led 0 1 <<if $computer_led_1 is false>>\n   <<set $computer_led_1 to true>>\n   [[Dev]]\n-> ./led 1 0 <<if $computer_led_2 is true>>\n   <<set $computer_led_2 to false>>\n   [[Dev]]\n-> ./led 1 1 <<if $computer_led_2 is false>>\n   <<set $computer_led_2 to true>>\n   [[Dev]]\n-> ./led 2 0 <<if $computer_led_3 is true>>\n   <<set $computer_led_3 to false>>\n   [[Dev]]\n-> ./led 2 1 <<if $computer_led_3 is false>>\n   <<set $computer_led_3 to true>>\n   [[Dev]]\n-> cd /\n   [[Prompt]]",
+		"position": {
+			"x": -6,
+			"y": 295
+		},
+		"colorID": 0
 	}
 ]
