@@ -2,17 +2,17 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Hi\n[[Foo|Foo]]\n[[Bar|Bar]]",
+		"body": "Hello there!  Booting up...\n[[./foo|Foo]]\n[[./bar|Bar]]",
 		"position": {
 			"x": 540,
-			"y": 260
+			"y": 261
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Foo",
 		"tags": "",
-		"body": "I am Foo",
+		"body": "Foo.exe\n=======\nFoo is fun.\n[[Start]]",
 		"position": {
 			"x": 322,
 			"y": 525
@@ -22,7 +22,7 @@
 	{
 		"title": "Bar",
 		"tags": "",
-		"body": "I am Bar",
+		"body": "Bar.exe\n=======\nBar is going places!\n[[Start]]",
 		"position": {
 			"x": 749,
 			"y": 523

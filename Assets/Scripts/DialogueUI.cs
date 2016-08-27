@@ -86,7 +86,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
       lineText.text = renderedText;
     }
     SetContinuePromptActive(true);
-    yield return new WaitForSeconds(2.0f);
+    //yield return new WaitForSeconds(2.0f);
     while (Input.anyKeyDown == false) {
       yield return null;
     }
@@ -100,7 +100,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
       "buttons to present them in. This will cause problems.");
     }
     int i = 0;
-    Debug.Log("Options Count " + optionsCollection.options.Count);
     foreach (var optionString in optionsCollection.options) {
       optionButtons[i].gameObject.SetActive(true);
       optionButtons[i].GetComponentInChildren<Text>().text = optionString;
