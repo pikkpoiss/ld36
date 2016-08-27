@@ -14,6 +14,10 @@ public class ConsoleButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     originalColor_ = text_.color;
   }
 
+  public void OnEnable() {
+    text_.color = originalColor_;
+  }
+
   public void OnPointerEnter(PointerEventData eventData) {
     text_.color = highlightColor;
   }
