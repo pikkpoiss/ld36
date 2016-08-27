@@ -2,7 +2,7 @@
 	{
 		"title": "Prompt",
 		"tags": "",
-		"body": "> \n[[cd /dev|Dev]]\n[[./bar|Bar]]\n[[./qux|Qux]]\n<<if $visited_bar is 1>>\n[[./bar.hacked|BarHacked]]\n<<endif>>\n",
+		"body": "> \n[[cd /dev|Dev]]\n[[cd /usr|Usr]]\n[[./qux|Qux]]\n",
 		"position": {
 			"x": 546,
 			"y": 127
@@ -10,19 +10,9 @@
 		"colorID": 0
 	},
 	{
-		"title": "Foo",
+		"title": "Usr",
 		"tags": "",
-		"body": "<<set $computer_led_1 to true >>\nFoo.exe\n=======\nFoo is fun.\n[[Prompt]]",
-		"position": {
-			"x": 317,
-			"y": 539
-		},
-		"colorID": 0
-	},
-	{
-		"title": "Bar",
-		"tags": "",
-		"body": "Bar.exe\n=======\nBar is going places!\n<<set $visited_bar to 1>>\n[[Prompt]]",
+		"body": "$ ls\nroot\nguest\n\n> \n[[cd root|Usr.Root]]\n[[cd guest|Usr.Guest]]\n[[cd /|Prompt]]",
 		"position": {
 			"x": 579,
 			"y": 534
@@ -30,12 +20,12 @@
 		"colorID": 0
 	},
 	{
-		"title": "BarHacked",
+		"title": "Pokemans.Hacked",
 		"tags": "",
-		"body": "Bar.exe.hax0r3d\n===============\nRoot mode!!!!!!\n[[Prompt]]",
+		"body": "Pokemans.exe.hax0r3d\n====================\nRoot mode!!!!!!\n\n[[Usr.Guest]]",
 		"position": {
-			"x": 836,
-			"y": 536
+			"x": 1000,
+			"y": 1126
 		},
 		"colorID": 0
 	},
@@ -74,8 +64,68 @@
 		"tags": "",
 		"body": "-> ./led 0 0 <<if $computer_led_1 is true>>\n    <<set $computer_led_1 to false>>\n    LED0 state: disabled\n    [[Dev]]\n-> ./led 0 1 <<if $computer_led_1 is false>>\n    <<set $computer_led_1 to true>>\n    LED0 state: enabled\n    [[Dev]]\n-> ./led 1 0 <<if $computer_led_2 is true>>\n    <<set $computer_led_2 to false>>\n    LED1 state: disabled\n    [[Dev]]\n-> ./led 1 1 <<if $computer_led_2 is false>>\n    <<set $computer_led_2 to true>>\n    LED1 state: enabled\n    [[Dev]]\n-> ./led 2 0 <<if $computer_led_3 is true>>\n    <<set $computer_led_3 to false>>\n    LED2 state: disabled\n    [[Dev]]\n-> ./led 2 1 <<if $computer_led_3 is false>>\n   <<set $computer_led_3 to true>>\n    LED2 state: enabled\n   [[Dev]]\n-> cd /\n   [[Prompt]]",
 		"position": {
-			"x": -6,
-			"y": 295
+			"x": 183,
+			"y": 533
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Hack1",
+		"tags": "",
+		"body": "Enter password:\n0x[$key_target]\n0x[$key_current]\n[[Abort|Usr.Root]]\n[[Hack1.Success]]\n[[Hack1.Failure]]",
+		"position": {
+			"x": 319,
+			"y": 1129
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Hack1.Success",
+		"tags": "",
+		"body": "You're in!\n[[Usr.Root]]",
+		"position": {
+			"x": 408,
+			"y": 1451
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Hack1.Failure",
+		"tags": "",
+		"body": "Invalid! Attempts remaining: [$remaining]\n[[Hack1]]",
+		"position": {
+			"x": 160,
+			"y": 1455
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Usr.Root",
+		"tags": "",
+		"body": "$ ls\npasswords.txt.enc\n\n-> hack passwords.txt.enc\n    [[Hack1]]\n-> cd ..\n   [[Usr]]",
+		"position": {
+			"x": 522,
+			"y": 834
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Pokemans",
+		"tags": "",
+		"body": "Pokemans.exe\n============\n\nMust identify and catalogue\nevery Pokeman!\n\n<<set $visited_pokemans to 1>>\n[[Usr.Guest]]",
+		"position": {
+			"x": 761,
+			"y": 1125
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Usr.Guest",
+		"tags": "",
+		"body": "$ ls\npokemans.exe\n<<if $hacked_pokemans is 1>>\npokemans.hacked.exe\n<<endif>>\n\n-> ./pokemans.exe\n    [[Pokemans]]\n-> hack ./pokemans.exe <<if $visited_pokemans is 1 and $hacked_pokemans is 0>>\n    <<set $hacked_pokemans to 1>>\n    [[Usr.Guest]]\n-> ./pokemans.hacked.exe <<if $hacked_pokemans is 1>>\n    [[Pokemans.Hacked]]\n-> cd ..\n   [[Usr]]",
+		"position": {
+			"x": 854,
+			"y": 822
 		},
 		"colorID": 0
 	}
