@@ -2,10 +2,10 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Hello there!  Booting up...\n[[./foo|Foo]]\n[[./bar|Bar]]",
+		"body": "Hello there!  Booting up...\n[[./foo|Foo]]\n[[./bar|Bar]]\n[[./qux|Qux]]",
 		"position": {
 			"x": 540,
-			"y": 261
+			"y": 267
 		},
 		"colorID": 0
 	},
@@ -14,8 +14,8 @@
 		"tags": "",
 		"body": "Foo.exe\n=======\nFoo is fun.\n[[Start]]",
 		"position": {
-			"x": 322,
-			"y": 525
+			"x": 317,
+			"y": 539
 		},
 		"colorID": 0
 	},
@@ -24,9 +24,29 @@
 		"tags": "",
 		"body": "Bar.exe\n=======\nBar is going places!\n[[Start]]",
 		"position": {
-			"x": 749,
-			"y": 523
+			"x": 547,
+			"y": 539
 		},
 		"colorID": 0
+	},
+	{
+		"title": "Qux",
+		"tags": "",
+		"body": "<<start DoomClock 30>>\n\nOoooh, Qux\n\n...there's something you should know about qux...\n\nHope you can get out!\n\n[[./qux|Qux]]\n[[./quxit|Quxit]]",
+		"position": {
+			"x": 899,
+			"y": 264
+		},
+		"colorID": 1
+	},
+	{
+		"title": "Quxit",
+		"tags": "",
+		"body": "<<stop DoomClock>>\n\nWhew, that was close!\n\n[[Start]]",
+		"position": {
+			"x": 895,
+			"y": 529
+		},
+		"colorID": 1
 	}
 ]
