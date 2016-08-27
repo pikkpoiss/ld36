@@ -28,7 +28,8 @@ public class Computer : MonoBehaviour {
   private void SetLED(GameObject led, Color color) {
     Renderer renderer = led.GetComponent<Renderer>();
     Material mat = renderer.material;
-    mat.SetColor ("_EmissionColor", color);
+    mat.SetColor("_Color", color);
+    mat.SetColor("_EmissionColor", color);
   }
     
   void Update() {

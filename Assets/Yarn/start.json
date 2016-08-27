@@ -72,7 +72,7 @@
 	{
 		"title": "Dev",
 		"tags": "",
-		"body": "-> ./led 0 0 <<if $computer_led_1 is true>>\n   <<set $computer_led_1 to false>>\n   [[Dev]]\n-> ./led 0 1 <<if $computer_led_1 is false>>\n   <<set $computer_led_1 to true>>\n   [[Dev]]\n-> ./led 1 0 <<if $computer_led_2 is true>>\n   <<set $computer_led_2 to false>>\n   [[Dev]]\n-> ./led 1 1 <<if $computer_led_2 is false>>\n   <<set $computer_led_2 to true>>\n   [[Dev]]\n-> ./led 2 0 <<if $computer_led_3 is true>>\n   <<set $computer_led_3 to false>>\n   [[Dev]]\n-> ./led 2 1 <<if $computer_led_3 is false>>\n   <<set $computer_led_3 to true>>\n   [[Dev]]\n-> cd /\n   [[Prompt]]",
+		"body": "-> ./led 0 0 <<if $computer_led_1 is true>>\n    <<set $computer_led_1 to false>>\n    LED0 state: disabled\n    [[Dev]]\n-> ./led 0 1 <<if $computer_led_1 is false>>\n    <<set $computer_led_1 to true>>\n    LED0 state: enabled\n    [[Dev]]\n-> ./led 1 0 <<if $computer_led_2 is true>>\n    <<set $computer_led_2 to false>>\n    LED1 state: disabled\n    [[Dev]]\n-> ./led 1 1 <<if $computer_led_2 is false>>\n    <<set $computer_led_2 to true>>\n    LED1 state: enabled\n    [[Dev]]\n-> ./led 2 0 <<if $computer_led_3 is true>>\n    <<set $computer_led_3 to false>>\n    LED2 state: disabled\n    [[Dev]]\n-> ./led 2 1 <<if $computer_led_3 is false>>\n   <<set $computer_led_3 to true>>\n    LED2 state: enabled\n   [[Dev]]\n-> cd /\n   [[Prompt]]",
 		"position": {
 			"x": -6,
 			"y": 295

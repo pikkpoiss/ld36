@@ -1588,8 +1588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1effed040ba4eaaa87beb593159b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ledEnabledColor: {r: 0, g: 1, b: 0.006896496, a: 1}
-  ledDisabledColor: {r: 1, g: 0, b: 0.47586203, a: 1}
+  ledEnabledColor: {r: 0, g: 0.77205884, b: 0.012268477, a: 1}
+  ledDisabledColor: {r: 0.928, g: 0, b: 0.55680037, a: 1}
   monitorLED1: {fileID: 553971589}
   monitorLED2: {fileID: 1138728352}
   monitorLED3: {fileID: 1171106639}
