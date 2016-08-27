@@ -2,7 +2,7 @@
 	{
 		"title": "Prompt",
 		"tags": "",
-		"body": "> \n[[cd /dev|Dev]]\n[[cd /usr|Usr]]\n[[./qux|Qux]]\n",
+		"body": "$ ls\nbin\ndev\nusr\n> \n[[cd /bin|Bin]]\n[[cd /dev|Dev]]\n[[cd /usr|Usr]]\n\n",
 		"position": {
 			"x": 546,
 			"y": 127
@@ -12,7 +12,7 @@
 	{
 		"title": "Usr",
 		"tags": "",
-		"body": "$ ls\nroot\nguest\n\n> \n[[cd root|Usr.Root]]\n[[cd guest|Usr.Guest]]\n[[cd /|Prompt]]",
+		"body": "$ ls\nroot\nguest\n\n> \n[[cd root|Usr.Root]]\n[[cd guest|Usr.Guest]]\n[[cd ..|Prompt]]",
 		"position": {
 			"x": 579,
 			"y": 534
@@ -32,20 +32,20 @@
 	{
 		"title": "Qux",
 		"tags": "",
-		"body": "<<start DoomClock 30>>\n\nOoooh, Qux\n\n...there's something you should know about qux...\n\nHope you can get out!\n\n[[./qux|Qux]]\n[[./quxit|Quxit]]",
+		"body": "<<start DoomClock 30>>\n\nOoooh, Qux\n\n...there's something you \nshould know about qux...\n\nHope you can get out!\n\n[[./qux|Qux]]\n[[./quxit|Quxit]]",
 		"position": {
-			"x": 1115,
-			"y": 291
+			"x": -269,
+			"y": 808
 		},
 		"colorID": 1
 	},
 	{
 		"title": "Quxit",
 		"tags": "",
-		"body": "<<stop DoomClock>>\n\nWhew, that was close!\n\n[[Prompt]]",
+		"body": "<<stop DoomClock>>\n\nWhew, that was close!\n\n[[Bin]]",
 		"position": {
-			"x": 1116,
-			"y": 561
+			"x": -82,
+			"y": 1098
 		},
 		"colorID": 1
 	},
@@ -102,7 +102,7 @@
 	{
 		"title": "Usr.Root",
 		"tags": "",
-		"body": "$ ls\npasswords.txt.enc\n\n-> hack passwords.txt.enc\n    [[Hack1]]\n-> cd ..\n   [[Usr]]",
+		"body": "$ ls\npasswords.txt.enc\n\n-> hack passwords.txt.enc <<if $path_set is 1>>\n    [[Hack1]]\n-> cd ..\n   [[Usr]]",
 		"position": {
 			"x": 522,
 			"y": 834
@@ -122,10 +122,20 @@
 	{
 		"title": "Usr.Guest",
 		"tags": "",
-		"body": "$ ls\npokemans.exe\n<<if $hacked_pokemans is 1>>\npokemans.hacked.exe\n<<endif>>\n\n-> ./pokemans.exe\n    [[Pokemans]]\n-> hack ./pokemans.exe <<if $visited_pokemans is 1 and $hacked_pokemans is 0>>\n    <<set $hacked_pokemans to 1>>\n    [[Usr.Guest]]\n-> ./pokemans.hacked.exe <<if $hacked_pokemans is 1>>\n    [[Pokemans.Hacked]]\n-> cd ..\n   [[Usr]]",
+		"body": "$ ls\npokemans.exe\n<<if $hacked_pokemans is 1>>\npokemans.hacked.exe\n<<endif>>\n\n-> ./pokemans.exe\n    [[Pokemans]]\n-> hack ./pokemans.exe <<if $path_set is 1 and $visited_pokemans is 1 and $hacked_pokemans is 0>>\n    <<set $hacked_pokemans to 1>>\n    [[Usr.Guest]]\n-> ./pokemans.hacked.exe <<if $hacked_pokemans is 1>>\n    [[Pokemans.Hacked]]\n-> cd ..\n   [[Usr]]",
 		"position": {
 			"x": 854,
 			"y": 822
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bin",
+		"tags": "",
+		"body": "$ ls \nqux\nhack\n>\n\n-> ./qux\n    [[Qux]]\n-> ./hack\n    Nothing to hack! Maybe add to $PATH?\n    <<set $show_path_set to 1>>\n    [[Bin]]\n-> export PATH=$PATH:/bin <<if $path_set is 0 and $show_path_set is 1>>\n    Done.\n    <<set $path_set to 1>>\n    [[Bin]]\n-> cd ..\n    [[Prompt]]",
+		"position": {
+			"x": -115,
+			"y": 516
 		},
 		"colorID": 0
 	}
