@@ -1,0 +1,32 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "Hi\n[[Foo|Foo]]\n[[Bar|Bar]]",
+		"position": {
+			"x": 540,
+			"y": 260
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Foo",
+		"tags": "",
+		"body": "I am Foo",
+		"position": {
+			"x": 322,
+			"y": 525
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Bar",
+		"tags": "",
+		"body": "I am Bar",
+		"position": {
+			"x": 749,
+			"y": 523
+		},
+		"colorID": 0
+	}
+]
