@@ -6,7 +6,7 @@ using Yarn.Unity;
 public class DialogueStorage : VariableStorageBehaviour {
   public Computer computer;
 
-  Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
+  private Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
 
   [System.Serializable]
   public class DefaultVariable {
@@ -56,6 +56,12 @@ public class DialogueStorage : VariableStorageBehaviour {
       var v = new Yarn.Value(value);
       SetValue("$" + variable.name, v);
     }
+    if (debugTextView != null) {
+      debugTextView.enabled = false;
+    }
+    if (Debug.isDebugBuild || Application.isEditor) {
+      SetValue("$debug", new Yarn.Value(true));
+    }
   }
     
   public override void SetValue(string variableName, Yarn.Value value) {
@@ -81,7 +87,7 @@ public class DialogueStorage : VariableStorageBehaviour {
   }
     
   void Update() {
-    if (debugTextView != null) {
+    if (debugTextView != null && debugTextView.enabled) {
       var stringBuilder = new System.Text.StringBuilder();
       foreach (KeyValuePair<string,Yarn.Value> item in variables) {
         stringBuilder.AppendLine(string.Format("{0} = {1}", 

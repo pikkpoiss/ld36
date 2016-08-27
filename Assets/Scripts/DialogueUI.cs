@@ -35,7 +35,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
     SetDialogueContainerActive(false);
     SetContinuePromptActive(false);
     foreach (var button in optionButtons) {
-      button.gameObject.SetActive (false);
+      button.gameObject.SetActive(false);
     }
     lineText.gameObject.SetActive(false);
   }
@@ -107,11 +107,16 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
       optionButtons[i].GetComponentInChildren<Text>().text = optionString;
       i++;
     }
+    if (optionsCollection.options.Count > 0) {
+      optionButtons[0].GetComponent<Button>().Select();
+    }
     SetSelectedOption = optionChooser;
     while (SetSelectedOption != null) {
       yield return null;
     }
     foreach (var button in optionButtons) {
+      // Change selection or else the selected choice won't be highlighted on the subsequent screen.
+      button.GetComponent<Button>().Select();
       button.gameObject.SetActive(false);
     }
   }
