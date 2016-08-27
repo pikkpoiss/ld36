@@ -12,7 +12,6 @@ public class DebugTextView : MonoBehaviour {
 
   [YarnCommand("toggle")]
   public void Toggle() {
-    Debug.Log("TOGGLE");
     text_.enabled = !text_.enabled;
   }
 }
