@@ -1,66 +1,71 @@
 digraph {
-  node [shape=box, fontsize=11]
+  node [shape=box, fontsize=11, fillcolor=white, style=filled]
   graph [dpi = 100]
   rankdir=BT
 
-  enable_left [label="Enable shiftleft"]
-  enable_right [label="Enable shiftright"]
-  enable_hack [label="Enable hack"]
-  enable_invert [label="Enable invert"]
-  enable_add32 [label="Enable add32"]
+  enable_left [label="Enable shiftleft", fillcolor=blue, fontcolor=white]
+  enable_xor5 [label="Enable xor5", fillcolor=blue, fontcolor=white]
+  enable_hack [label="Enable hack", fillcolor=blue, fontcolor=white]
+  enable_invert [label="Enable invert", fillcolor=blue, fontcolor=white]
+  enable_add32 [label="Enable add32", fillcolor=blue, fontcolor=white]
 
-  puzzle_hack1 [label="Puzzle: hack1"]
-  puzzle_hack2 [label="Puzzle: hack2"]
-  puzzle_hack3 [label="Puzzle: hack3"]
-  puzzle_hack4 [label="Puzzle: hack4"]
+  puzzle_pokemans [label="Puzzle: pokemans.exe", fillcolor=purple, fontcolor=white]
+  puzzle_xor5 [label="Puzzle: xor5.exe.enc", fillcolor=purple, fontcolor=white]
+  puzzle_email [label="Puzzle: email", fillcolor=purple, fontcolor=white]
+  puzzle_getroot [label="Puzzle: get root", fillcolor=purple, fontcolor=white]
 
-  boot
-  root [label="/"]
-  win
+  boot [fillcolor=green]
+  root [label="/", fillcolor=red, fontcolor=white]
+  win [fillcolor=green]
 
-  usr [label="/usr"]
-  dev [label="/dev"]
-  bin [label="/bin"]
+  usr [label="/usr", fillcolor=red, fontcolor=white]
+  dev [label="/dev", fillcolor=red, fontcolor=white]
+  bin [label="/bin", fillcolor=red, fontcolor=white]
   {rank=same; usr; dev; bin}
 
-  usr_root [label="/usr/root"]
-  usr_mbishop [label="/usr/mbishop"]
-  usr_dcrease [label="/usr/dcrease"]
-  usr_droskow [label="/usr/droskow"]
+  usr_root [label="/usr/root", fillcolor=red, fontcolor=white]
+  usr_mbishop [label="/usr/mbishop", fillcolor=red, fontcolor=white]
+  usr_dcrease [label="/usr/dcrease", fillcolor=red, fontcolor=white]
+  usr_dcrease_email [label="/usr/dcrease/email", fillcolor=red, fontcolor=white]
+  usr_droskow [label="/usr/droskow", fillcolor=red, fontcolor=white]
 
   root -> boot [color=blue]
   enable_left -> boot [color=blue]
-  enable_right -> boot [color=blue]
 
   dev -> root [color=blue]
   bin -> root [color=blue]
   usr -> root [color=blue]
 
   usr_mbishop -> usr
-  usr_dcrease -> puzzle_hack1
+  usr_dcrease -> puzzle_pokemans
+  usr_dcrease_email -> usr_dcrease
   usr_droskow -> usr
 
-  usr_root -> puzzle_hack4
+  usr_root -> puzzle_getroot
   usr_root -> usr [color=blue]
 
   enable_hack -> bin [color=blue]
 
-  enable_right -> usr_droskow
 
-  puzzle_hack1 -> usr_mbishop
-  puzzle_hack1 -> enable_hack [color=blue]
-  puzzle_hack1 -> enable_left [color=blue]
+  puzzle_pokemans -> usr_mbishop
+  puzzle_pokemans -> enable_hack [color=blue]
+  puzzle_pokemans -> enable_left [color=blue]
 
-  puzzle_hack2 -> enable_invert
-  puzzle_hack2 -> enable_add32
+  puzzle_xor5 -> enable_left
+  puzzle_xor5 -> enable_add32
+  puzzle_xor5 -> usr_droskow
 
-  puzzle_hack3 -> enable_right
-  puzzle_hack3 -> enable_invert
+  enable_xor5 -> puzzle_xor5
 
-  puzzle_hack4 -> enable_left
-  puzzle_hack4 -> enable_right
-  puzzle_hack4 -> enable_invert
-  puzzle_hack4 -> enable_add32
+  puzzle_email -> enable_xor5
+  puzzle_email -> enable_invert
+  puzzle_email -> usr_dcrease_email
+
+  puzzle_getroot -> enable_left
+  puzzle_getroot -> enable_xor5
+  puzzle_getroot -> enable_invert
+  puzzle_getroot -> enable_add32
+  puzzle_getroot -> usr
 
   enable_invert -> dev
   enable_add32 -> usr_dcrease
