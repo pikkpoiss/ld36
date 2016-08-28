@@ -19,25 +19,31 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
 
   private class SelectedOptionAction {
     private int option_;
+    private string label_;
     private BitmaskOperation operation_ = null;
     private BitmaskPuzzle puzzle_ = null;
 
-    public SelectedOptionAction(int option) {
+    public SelectedOptionAction(int option, string label) {
       option_ = option;
+      label_ = label;
     }
 
     public SelectedOptionAction(BitmaskOperation operation, int option, ref BitmaskPuzzle puzzle) {
       operation_ = operation;
       option_ = option;
       puzzle_ = puzzle;
+      label_ = operation.Label();
     }
 
     public void Act(Yarn.OptionChooser chooser) {
-      Debug.LogFormat("Act on {0} {1}", option_, operation_);
       if (operation_ != null) {
         operation_.Act(ref puzzle_);
       }
       chooser(option_);
+    }
+
+    public string label {
+      get { return label_; }
     }
   }
 
@@ -128,10 +134,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
       Debug.LogWarning("There are more options to present than there are" +
       "buttons to present them in. This will cause problems.");
     }
-    HashSet<BitmaskOperation> operations = new HashSet<BitmaskOperation>();
-    int buttonIndex = 0;
+    List<SelectedOptionAction> actions = new List<SelectedOptionAction>();
     int optionIndex = 0;
-    int commandsIndex = 0;
     foreach (var optionString in optionsCollection.options) {
       switch (optionString.Trim()) {
         case "SUCCESS":
@@ -139,29 +143,28 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
         case "FAILURE":
           break;
         case "COMMANDS":
-          operations.UnionWith(storage.EnabledOperations());
-          commandsIndex = buttonIndex;
+          foreach (BitmaskOperation op in storage.EnabledOperations()) {
+            actions.Add(new SelectedOptionAction(op, optionIndex, ref puzzle_));
+          }
           break;
         case "ABORT":
-          operations.Add(BitmaskOperation.abort);
+          actions.Add(new SelectedOptionAction(optionIndex, "Abort"));
           break;
         default:
-          optionButtons[buttonIndex].gameObject.SetActive(true);
-          optionButtons[buttonIndex].GetComponentInChildren<Text>().text = optionString;
-          SetSelectedOptionMap.Add(buttonIndex, new SelectedOptionAction(optionIndex));
-          buttonIndex++;
+          actions.Add(new SelectedOptionAction(optionIndex, optionString));
           break;
       }
       optionIndex++;
     }
-    if (operations != null) {
-      if (buttonIndex + operations.Count > optionButtons.Count) {
+    if (actions.Count > 0) {
+      int buttonIndex = 0;
+      if (actions.Count > optionButtons.Count) {
         Debug.LogWarning("Attempting to add options but count is greater than number of buttons!");
       }
-      foreach (BitmaskOperation op in operations) {
+      foreach (SelectedOptionAction action in actions) {
         optionButtons[buttonIndex].gameObject.SetActive(true);
-        optionButtons[buttonIndex].GetComponentInChildren<Text>().text = op.Label();
-        SetSelectedOptionMap.Add(buttonIndex, new SelectedOptionAction(op, commandsIndex, ref puzzle_));
+        optionButtons[buttonIndex].GetComponentInChildren<Text>().text = action.label;
+        SetSelectedOptionMap.Add(buttonIndex, action);
         buttonIndex++;
       }
     }

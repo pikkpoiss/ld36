@@ -4,9 +4,18 @@ using System.Collections.Generic;
 
 [System.Serializable]
 public class BitmaskPuzzle {
+  private int currentValue_;
+  private int maxBits = 8;
+
   public int targetValue { get; private set; }
   public int startValue { get; private set; }
-  public int currentValue { get; set; }
+  public int currentValue { 
+    get { return currentValue_; }
+    set {
+      int maxValue = (int)Mathf.Pow(2.0f, maxBits) - 1;
+      currentValue_ = value & maxValue;
+    }
+  }
 
   public void Reset() {
     currentValue = startValue;

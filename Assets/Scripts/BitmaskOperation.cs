@@ -28,17 +28,10 @@ public class Negate : BitmaskOperation {
   }
 }
 
-public class Abort : BitmaskOperation {
-  override public string Label() {
-    return "Abort";
-  }
-}
-
 public class BitmaskOperation  {
   public static ShiftLeft shiftLeft = new ShiftLeft();
   public static ShiftRight shiftRight = new ShiftRight();
   public static Negate negate = new Negate();
-  public static Abort abort = new Abort();
 
   public static BitmaskOperation GetByName(string name) {
     switch (name.ToLower()) {

@@ -35,7 +35,7 @@ public class Dialogue : MonoBehaviour {
       return;
     }
     storage.SetValue("$puzzle_target", GetPuzzleValue(puzzle.targetValue));
-    storage.SetValue("$puzzle_active", GetPuzzleValue(puzzle.startValue));
+    storage.SetValue("$puzzle_active", GetPuzzleValue(puzzle.currentValue));
     ui.SetPuzzle(ref puzzle);
   }
 

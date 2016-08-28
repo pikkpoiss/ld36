@@ -72,7 +72,7 @@
 	{
 		"title": "Hack1",
 		"tags": "",
-		"body": "<<setpuzzle Dialogue intro>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack1]]\n-> Abort\n    <<clearpuzzle Dialogue>>\n    [[Usr.Root]]\n-> SUCCESS\n    [[Hack1.Success]]\n-> FAILURE\n    [[Hack1.Failure]]",
+		"body": "<<setpuzzle Dialogue intro>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack1]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Root]]\n-> SUCCESS\n    [[Hack1.Success]]\n-> FAILURE\n    [[Hack1.Failure]]",
 		"position": {
 			"x": 319,
 			"y": 1130
