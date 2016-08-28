@@ -9,7 +9,8 @@ public class CameraText : MonoBehaviour {
   }
 
   void Update() {
-    float v = Mathf.PingPong(Time.time, 2.0f);
-    crt_.CurvatureSet1 = v;
+    // Mathf.PingPong(Time.time, 1.0f)
+    crt_.CurvatureSet1 = 1.0f + (Random.value / 2.0f);
+    crt_.CurvatureSet2 = 3.0f + (Random.value / 2.0f);
   }
 }
