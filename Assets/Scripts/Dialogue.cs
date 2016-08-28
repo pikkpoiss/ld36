@@ -11,7 +11,35 @@ public class Dialogue : MonoBehaviour {
 
   private void Awake() {
     puzzles_ = new Dictionary<string, BitmaskPuzzle>() {
-      { "hack1", BitmaskPuzzle.Get(BitmaskPuzzle.Difficulty.Easy, BitmaskOperation.shiftLeft) }
+      { 
+        "hack_joke",
+        BitmaskPuzzle.Get(
+          BitmaskPuzzle.Difficulty.Easy,
+          BitmaskOperation.shiftLeft
+        ) 
+      },
+      { 
+        "hack_xor5",
+        BitmaskPuzzle.Get(
+          BitmaskPuzzle.Difficulty.Medium,
+          BitmaskOperation.add32,
+          BitmaskOperation.shiftLeft
+        ) 
+      },
+      { 
+        "hack_email",
+        BitmaskPuzzle.Get(
+          BitmaskPuzzle.Difficulty.Difficult, 
+          BitmaskOperation.shiftLeft
+        ) 
+      },
+      {
+        "hack_root",
+        BitmaskPuzzle.Get(
+          BitmaskPuzzle.Difficulty.Difficult,
+          BitmaskOperation.shiftLeft
+        ) 
+      }
     };
   }
 
