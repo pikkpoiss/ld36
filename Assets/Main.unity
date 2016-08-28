@@ -1037,7 +1037,7 @@ MonoBehaviour:
   - {fileID: 1092472161}
   gameControlsContainer: {fileID: 0}
   bitmasks: {fileID: 1643511453}
-  textSpeed: 0.02
+  textSpeed: 0.015
 --- !u!114 &711635478
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@
 		"body": "$ list\nbin/\ndev/\nusr/\n> \n<<enable Dialogue shiftleft>>\n<<enable Dialogue shiftright>>\n-> DEBUG <<if $debug is true>>\n    [[DEBUG]]\n-> changedir bin\n    [[Bin]]\n-> changedir dev\n    [[Dev]]\n-> changedir usr\n    [[Usr]]\n-> exit\n    System is shutting down now!\n   <<exit Dialogue>>",
 		"position": {
 			"x": 546,
-			"y": 128
+			"y": 130
 		},
 		"colorID": 6
 	},
@@ -52,7 +52,7 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Booting...\n _______  _______  _______ \n|       ||       ||       |\n|  _____||   _   ||  _____|\n| |_____ |  | |  || |_____ \n|_____  ||  |_|  ||_____  |\n _____| ||       | _____| |\n|_______||_______||_______|\n\nSECURE OPERATING SYSTEM v0.9\n \"We're sure, it's secure\"\n\n[[Root]]",
+		"body": "Booting...\n _______  _______  _______ \n|       ||       ||       |\n|  _____||   _   ||  _____|\n| |_____ |  | |  || |_____ \n|_____  ||  |_|  ||_____  |\n _____| ||       | _____| |\n|_______||_______||_______|\n\nSECURE OPERATING SYSTEM v0.9\n \"We're sure, it's secure\"\n[[Root]]",
 		"position": {
 			"x": 546,
 			"y": -104

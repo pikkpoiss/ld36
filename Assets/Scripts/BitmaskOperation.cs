@@ -8,19 +8,29 @@
   }
 }
 
-public class ShiftRight : BitmaskOperation {
+public class Add32 : BitmaskOperation {
   override public string Label() {
-    return "Shift Right";
+    return "Add32";
   }
 
   override public int Act(int input) {
-    return input >> 1;
+    return input + 32;
   }
 }
 
-public class Negate : BitmaskOperation {
+public class Xor5 : BitmaskOperation {
   override public string Label() {
-    return "Negate";
+    return "Xor5";
+  }
+
+  override public int Act(int input) {
+    return input ^ 5;
+  }
+}
+
+public class Invert : BitmaskOperation {
+  override public string Label() {
+    return "Invert";
   }
 
   override public int Act(int input) {
@@ -30,15 +40,18 @@ public class Negate : BitmaskOperation {
 
 public class BitmaskOperation  {
   public static ShiftLeft shiftLeft = new ShiftLeft();
-  public static ShiftRight shiftRight = new ShiftRight();
-  public static Negate negate = new Negate();
+  public static Add32 add32 = new Add32();
+  public static Xor5 negate = new Xor5();
+  public static Invert invert = new Invert();
 
   public static BitmaskOperation GetByName(string name) {
     switch (name.ToLower()) {
       case "shiftleft":
         return shiftLeft;
-      case "shiftright":
-        return shiftRight;
+      case "add32":
+        return add32;
+      case "invert":
+        return invert;
       case "negate":
         return negate;
     }
