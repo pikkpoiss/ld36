@@ -2,7 +2,7 @@
 	{
 		"title": "Root",
 		"tags": "",
-		"body": "$ list\nbin/\ndev/\nusr/\n> \n<<enable Dialogue shiftleft>>\n<<enable Dialogue shiftright>>\n-> DEBUG <<if $debug is true>>\n    [[DEBUG]]\n-> changedir bin\n    [[Bin]]\n-> changedir dev\n    [[Dev]]\n-> changedir usr\n    [[Usr]]\n-> exit\n    System is shutting down now!\n   <<exit Dialogue>>",
+		"body": "$ list\nbin/\ndev/\nusr/\n> \n<<enable Dialogue shiftleft>>\n-> DEBUG <<if $debug is true>>\n    [[DEBUG]]\n-> changedir bin\n    [[Bin]]\n-> changedir dev\n    [[Dev]]\n-> changedir usr\n    [[Usr]]\n-> exit\n    System is shutting down now!\n   <<exit Dialogue>>",
 		"position": {
 			"x": 546,
 			"y": 130
@@ -12,7 +12,7 @@
 	{
 		"title": "Usr",
 		"tags": "",
-		"body": "$ list\nroot/\nguest/\n> \n[[changedir root|Usr.Root]]\n[[changedir guest|Usr.Guest]]\n[[changedir ..|Root]]",
+		"body": "$ list\ndcrease/\ndroskow/\nmbishop/\nroot/\n> \n[[changedir dcrease|Usr.Dcrease]]\n[[changedir droskow|Usr.Droskow]]\n[[changedir mbishop|Usr.Mbishop]]\n[[changedir root|Usr.Root]]\n[[changedir ..|Root]]",
 		"position": {
 			"x": 579,
 			"y": 534
@@ -30,22 +30,12 @@
 		"colorID": 0
 	},
 	{
-		"title": "Qux",
+		"title": "Alarmtest",
 		"tags": "",
-		"body": "<<start DoomClock 30>>\n\nOoooh, Qux\n\n...there's something you \nshould know about qux...\n\nHope you can get out!\n\n[[./qux|Qux]]\n[[./quxit|Quxit]]",
+		"body": "<<start DoomClock 30>>\nSounding alarm in 30 seconds!\nPress 'r' to reset.\nPress 's' to stop.\n\n--> r\n    [[Alarmtest]]\n--> s\n    <<stop DoomClock>>\n    Alarm cancelled!\n    [[Bin]]",
 		"position": {
 			"x": -269,
 			"y": 808
-		},
-		"colorID": 1
-	},
-	{
-		"title": "Quxit",
-		"tags": "",
-		"body": "<<stop DoomClock>>\n\nWhew, that was close!\n\n[[Bin]]",
-		"position": {
-			"x": -82,
-			"y": 1098
 		},
 		"colorID": 1
 	},
@@ -62,10 +52,10 @@
 	{
 		"title": "Dev",
 		"tags": "",
-		"body": "$ list\nled.exe\n>\n-> run led.exe 0 0 <<if $computer_led_1 is true>>\n    <<set $computer_led_1 to false>>\n    LED0 state: disabled\n    [[Dev]]\n-> run led.exe 0 1 <<if $computer_led_1 is false>>\n    <<set $computer_led_1 to true>>\n    LED0 state: enabled\n    [[Dev]]\n-> run led.exe 1 0 <<if $computer_led_2 is true>>\n    <<set $computer_led_2 to false>>\n    LED1 state: disabled\n    [[Dev]]\n-> run led.exe 1 1 <<if $computer_led_2 is false>>\n    <<set $computer_led_2 to true>>\n    LED1 state: enabled\n    [[Dev]]\n-> run led.exe 2 0 <<if $computer_led_3 is true>>\n    <<set $computer_led_3 to false>>\n    LED2 state: disabled\n    [[Dev]]\n-> run led.exe 2 1 <<if $computer_led_3 is false>>\n   <<set $computer_led_3 to true>>\n    LED2 state: enabled\n   [[Dev]]\n-> changedir ..\n   [[Root]]",
+		"body": "$ list\ninvert.exe\nled.exe\n>\n-> run invert.exe <<if $dev_done is false and $computer_led_1 is false and $computer_led_2 is false and $computer_led_3 is false>>\n    Expected: 5\n    Value: 0\n    ERR[0x102] Unexpected value!\n    [[Dev]]\n-> run invert.exe <<if $dev_done is false and $computer_led_1 is false and $computer_led_2 is false and $computer_led_3 is true>>\n    Expected: 5\n    Value: 1\n    ERR[0x102] Unexpected value!\n    [[Dev]]\n-> run invert.exe <<if $dev_done is false and $computer_led_1 is false and $computer_led_2 is true and $computer_led_3 is false>>\n    Expected: 5\n    Value: 2\n    ERR[0x102] Unexpected value!\n    [[Dev]]\n-> run invert.exe <<if $dev_done is false and $computer_led_1 is false and $computer_led_2 is true and $computer_led_3 is true>>\n    Expected: 5\n    Value: 3\n    ERR[0x102] Unexpected value!\n    [[Dev]]\n-> run invert.exe <<if $dev_done is false and $computer_led_1 is true and $computer_led_2 is false and $computer_led_3 is false>>\n    Expected: 5\n    Value: 4\n    ERR[0x102] Unexpected value!\n    [[Dev]]\n-> run invert.exe <<if $dev_done is false and $computer_led_1 is true and $computer_led_2 is false and $computer_led_3 is true>>\n    Expected: 5\n    Value: 5\n    Installing invert utility... done.\n    <<enable Dialogue invert>>\n    <<set $dev_done to true>>\n    [[Dev]]\n-> run invert.exe <<if $dev_done is false and $computer_led_1 is true and $computer_led_2 is true and $computer_led_3 is false>>\n    Expected: 5\n    Value: 6\n    ERR[0x102] Unexpected value!\n    [[Dev]]\n-> run invert.exe <<if $dev_done is false and $computer_led_1 is true and $computer_led_2 is true and $computer_led_3 is true>>\n    Expected: 5\n    Value: 7\n    ERR[0x102] Unexpected value!\n    [[Dev]]\n-> run led.exe 0 0 <<if $computer_led_1 is true>>\n    <<set $computer_led_1 to false>>\n    LED0 state: disabled\n    [[Dev]]\n-> run led.exe 0 1 <<if $computer_led_1 is false>>\n    <<set $computer_led_1 to true>>\n    LED0 state: enabled\n    [[Dev]]\n-> run led.exe 1 0 <<if $computer_led_2 is true>>\n    <<set $computer_led_2 to false>>\n    LED1 state: disabled\n    [[Dev]]\n-> run led.exe 1 1 <<if $computer_led_2 is false>>\n    <<set $computer_led_2 to true>>\n    LED1 state: enabled\n    [[Dev]]\n-> run led.exe 2 0 <<if $computer_led_3 is true>>\n    <<set $computer_led_3 to false>>\n    LED2 state: disabled\n    [[Dev]]\n-> run led.exe 2 1 <<if $computer_led_3 is false>>\n   <<set $computer_led_3 to true>>\n    LED2 state: enabled\n   [[Dev]]\n-> changedir ..\n   [[Root]]",
 		"position": {
-			"x": 183,
-			"y": 533
+			"x": 214,
+			"y": 538
 		},
 		"colorID": 0
 	},
@@ -120,9 +110,9 @@
 		"colorID": 0
 	},
 	{
-		"title": "Usr.Guest",
+		"title": "Usr.Mbishop",
 		"tags": "",
-		"body": "$ list\npokemans.exe\n<<if $hacked_pokemans is true>>\npokemans.hacked.exe\n<<endif>>\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> run hack pokemans.exe <<if $hackboy_hack_path is true and $visited_pokemans is true and $hacked_pokemans is false>>\n    <<set $hacked_pokemans to true>>\n    [[Usr.Guest]]\n-> run pokemans.hacked.exe <<if $hacked_pokemans is true>>\n    [[Pokemans.Hacked]]\n-> changedir ..\n   [[Usr]]",
+		"body": "$ list\npokemans.exe\n<<if $hacked_pokemans is true>>\npokemans.hacked.exe\n<<endif>>\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> run hack pokemans.exe <<if $hackboy_hack_path is true and $visited_pokemans is true and $hacked_pokemans is false>>\n    <<set $hacked_pokemans to true>>\n    [[Usr.Mbishop]]\n-> run pokemans.hacked.exe <<if $hacked_pokemans is true>>\n    [[Pokemans.Hacked]]\n-> changedir ..\n   [[Usr]]",
 		"position": {
 			"x": 854,
 			"y": 829
@@ -132,7 +122,7 @@
 	{
 		"title": "Bin",
 		"tags": "",
-		"body": "$ list \nqux.exe\nhack.exe\n>\n-> run qux.exe\n    [[Qux]]\n-> run hack.exe\n    Nothing to hack! \n    <<if $hackboy_hack_path is false>>hack command is missing from $PATH!<<endif>>\n    <<if $hackboy_hack_path is true>>Try running from other locations.<<endif>>\n    <<set $show_hackboy_hack_path to true>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $hackboy_hack_path is false and $show_hackboy_hack_path is true>>\n    Done.\n    <<set $hackboy_hack_path to true>>\n    [[Bin]]\n-> changedir ..\n    [[Root]]",
+		"body": "$ list \nalarmtest.exe\nhack.exe\n>\n-> run alarmtest.exe\n    [[Alarmtest]]\n-> run hack.exe\n    Nothing to hack! \n    <<if $hackboy_hack_path is false>>hack command is missing from $PATH!<<endif>>\n    <<if $hackboy_hack_path is true>>Try running from other locations.<<endif>>\n    <<set $show_hackboy_hack_path to true>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $hackboy_hack_path is false and $show_hackboy_hack_path is true>>\n    Done.\n    <<set $hackboy_hack_path to true>>\n    [[Bin]]\n-> changedir ..\n    [[Root]]",
 		"position": {
 			"x": -112,
 			"y": 537
@@ -144,8 +134,8 @@
 		"tags": "",
 		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> State: hack1\n   <<set $hackboy_hack_path to true>>\n   <<set $visited_pokemans to true>>\n   <<set $hacked_pokemans to true>>\n   [[Usr.Root]]\n-> Back\n   [[Root]]",
 		"position": {
-			"x": 1129,
-			"y": 251
+			"x": 1559,
+			"y": 131
 		},
 		"colorID": 0
 	}
