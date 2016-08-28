@@ -13,9 +13,33 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
   public RectTransform gameControlsContainer;
   public Bitmasks bitmasks;
 
-  public BitmaskPuzzle puzzle { set; get; }
-    
+  private BitmaskPuzzle puzzle_;
   private Yarn.OptionChooser SetSelectedOption;
+  private Dictionary<int, SelectedOptionAction> SetSelectedOptionMap = new Dictionary<int, SelectedOptionAction>();
+
+  private class SelectedOptionAction {
+    private int option_;
+    private BitmaskOperation operation_ = null;
+    private BitmaskPuzzle puzzle_ = null;
+
+    public SelectedOptionAction(int option) {
+      option_ = option;
+    }
+
+    public SelectedOptionAction(BitmaskOperation operation, int option, ref BitmaskPuzzle puzzle) {
+      operation_ = operation;
+      option_ = option;
+      puzzle_ = puzzle;
+    }
+
+    public void Act(Yarn.OptionChooser chooser) {
+      Debug.LogFormat("Act on {0} {1}", option_, operation_);
+      if (operation_ != null) {
+        operation_.Act(ref puzzle_);
+      }
+      chooser(option_);
+    }
+  }
 
   [Tooltip("How quickly to show the text, in seconds per character")]
   public float textSpeed = 0.025f;
@@ -104,11 +128,42 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
       Debug.LogWarning("There are more options to present than there are" +
       "buttons to present them in. This will cause problems.");
     }
-    int i = 0;
+    HashSet<BitmaskOperation> operations = new HashSet<BitmaskOperation>();
+    int buttonIndex = 0;
+    int optionIndex = 0;
+    int commandsIndex = 0;
     foreach (var optionString in optionsCollection.options) {
-      optionButtons[i].gameObject.SetActive(true);
-      optionButtons[i].GetComponentInChildren<Text>().text = optionString;
-      i++;
+      switch (optionString.Trim()) {
+        case "SUCCESS":
+          break;
+        case "FAILURE":
+          break;
+        case "COMMANDS":
+          operations.UnionWith(storage.EnabledOperations());
+          commandsIndex = buttonIndex;
+          break;
+        case "ABORT":
+          operations.Add(BitmaskOperation.abort);
+          break;
+        default:
+          optionButtons[buttonIndex].gameObject.SetActive(true);
+          optionButtons[buttonIndex].GetComponentInChildren<Text>().text = optionString;
+          SetSelectedOptionMap.Add(buttonIndex, new SelectedOptionAction(optionIndex));
+          buttonIndex++;
+          break;
+      }
+      optionIndex++;
+    }
+    if (operations != null) {
+      if (buttonIndex + operations.Count > optionButtons.Count) {
+        Debug.LogWarning("Attempting to add options but count is greater than number of buttons!");
+      }
+      foreach (BitmaskOperation op in operations) {
+        optionButtons[buttonIndex].gameObject.SetActive(true);
+        optionButtons[buttonIndex].GetComponentInChildren<Text>().text = op.Label();
+        SetSelectedOptionMap.Add(buttonIndex, new SelectedOptionAction(op, commandsIndex, ref puzzle_));
+        buttonIndex++;
+      }
     }
     if (optionsCollection.options.Count > 0) {
       optionButtons[0].GetComponent<Button>().Select();
@@ -125,8 +180,15 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
   }
 
   public void SetOption(int selectedOption) {
-    SetSelectedOption(selectedOption);
+    SelectedOptionAction action;
+    if (SetSelectedOptionMap.TryGetValue(selectedOption, out action)) {
+      action.Act(SetSelectedOption);
+    } else {
+      Debug.LogWarningFormat("Did not find selected option {0} in map!", selectedOption);
+      SetSelectedOption(selectedOption);
+    }
     SetSelectedOption = null; 
+    SetSelectedOptionMap.Clear();
     lineText.text = "";
   }
 
@@ -155,13 +217,18 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
     yield break;
   }
 
-  public void SetPuzzle(BitmaskPuzzle puzzle) {
+  public void SetPuzzle(ref BitmaskPuzzle puzzle) {
     bitmasks.gameObject.SetActive(true);
     bitmasks.SetPuzzle(puzzle);
+    puzzle_ = puzzle;
   }
 
   public void ClearPuzzle() {
+    if (puzzle_ != null) {
+      puzzle_.Reset();
+    }
     bitmasks.SetPuzzle(null);
     bitmasks.gameObject.SetActive(false);
+    puzzle_ = null;
   }
 }

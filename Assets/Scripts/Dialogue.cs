@@ -11,8 +11,20 @@ public class Dialogue : MonoBehaviour {
 
   private void Awake() {
     puzzles_ = new Dictionary<string, BitmaskPuzzle>() {
-      { "intro", BitmaskPuzzle.Get(BitmaskPuzzle.Difficulty.Easy, BitmaskPuzzle.Operation.ShiftLeft) }
+      { "intro", BitmaskPuzzle.Get(BitmaskPuzzle.Difficulty.Easy, BitmaskOperation.shiftLeft) }
     };
+  }
+    
+  [YarnCommand("enable")]
+  public void Enable(string name) {
+    storage.EnableOperation(name);
+  }
+
+  [YarnCommand("clearpuzzle")]
+  public void ClearPuzzle() {
+    ui.ClearPuzzle();
+    storage.SetValue("$puzzle_target", Yarn.Value.NULL);
+    storage.SetValue("$puzzle_active", Yarn.Value.NULL);
   }
 
   [YarnCommand("setpuzzle")]
@@ -24,8 +36,10 @@ public class Dialogue : MonoBehaviour {
     }
     storage.SetValue("$puzzle_target", GetPuzzleValue(puzzle.targetValue));
     storage.SetValue("$puzzle_active", GetPuzzleValue(puzzle.startValue));
-    ui.SetPuzzle(puzzle);
+    ui.SetPuzzle(ref puzzle);
   }
+
+
     
   private string GetPuzzleValue(int value) {
     return value.ToString("X4");

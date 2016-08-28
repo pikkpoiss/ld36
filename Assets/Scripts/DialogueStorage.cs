@@ -8,6 +8,8 @@ public class DialogueStorage : VariableStorageBehaviour {
 
   private Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
 
+  private HashSet<BitmaskOperation> enabledOperations_ = new HashSet<BitmaskOperation>();
+
   [System.Serializable]
   public class DefaultVariable {
     public string name;
@@ -100,5 +102,13 @@ public class DialogueStorage : VariableStorageBehaviour {
       }
       debugTextView.text = stringBuilder.ToString();
     }
+  }
+
+  public void EnableOperation(string name) {
+    enabledOperations_.Add(BitmaskOperation.GetByName(name));
+  }
+
+  public HashSet<BitmaskOperation> EnabledOperations() {
+    return enabledOperations_;
   }
 }

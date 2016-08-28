@@ -2,7 +2,7 @@
 	{
 		"title": "Prompt",
 		"tags": "",
-		"body": "$ list\nbin/\ndev/\nusr/\n> \n-> DEBUG <<if $debug is true>>\n   [[DEBUG]]\n-> changedir bin\n   [[Bin]]\n-> changedir dev\n   [[Dev]]\n-> changedir usr\n   [[Usr]]",
+		"body": "$ list\nbin/\ndev/\nusr/\n> \n<<enable Dialogue shiftleft>>\n<<enable Dialogue shiftright>>\n-> DEBUG <<if $debug is true>>\n   [[DEBUG]]\n-> changedir bin\n   [[Bin]]\n-> changedir dev\n   [[Dev]]\n-> changedir usr\n   [[Usr]]",
 		"position": {
 			"x": 546,
 			"y": 128
@@ -72,10 +72,10 @@
 	{
 		"title": "Hack1",
 		"tags": "",
-		"body": "<<setpuzzle Dialogue intro>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n[[Abort|Usr.Root]]\n[[HIDDEN|Hack1.Success]]\n[[HIDDEN|Hack1.Failure]]",
+		"body": "<<setpuzzle Dialogue intro>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack1]]\n-> Abort\n    <<clearpuzzle Dialogue>>\n    [[Usr.Root]]\n-> SUCCESS\n    [[Hack1.Success]]\n-> FAILURE\n    [[Hack1.Failure]]",
 		"position": {
 			"x": 319,
-			"y": 1129
+			"y": 1130
 		},
 		"colorID": 0
 	},
