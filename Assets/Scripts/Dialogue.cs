@@ -38,8 +38,6 @@ public class Dialogue : MonoBehaviour {
     storage.SetValue("$puzzle_active", GetPuzzleValue(puzzle.currentValue));
     ui.SetPuzzle(ref puzzle);
   }
-
-
     
   private string GetPuzzleValue(int value) {
     return value.ToString("X4");
