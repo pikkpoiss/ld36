@@ -2,7 +2,7 @@
 	{
 		"title": "Prompt",
 		"tags": "",
-		"body": "$ ls\nbin\ndev\nusr\n> \n-> cd bin\n   [[Bin]]\n-> cd dev\n   [[Dev]]\n-> cd usr\n   [[Usr]]\n-> DEBUG <<if $debug is true>>\n   [[DEBUG]]",
+		"body": "$ list\nbin/\ndev/\nusr/\n> \n-> DEBUG <<if $debug is true>>\n   [[DEBUG]]\n-> changedir bin\n   [[Bin]]\n-> changedir dev\n   [[Dev]]\n-> changedir usr\n   [[Usr]]",
 		"position": {
 			"x": 546,
 			"y": 128
@@ -12,7 +12,7 @@
 	{
 		"title": "Usr",
 		"tags": "",
-		"body": "$ ls\nroot\nguest\n> \n[[cd root|Usr.Root]]\n[[cd guest|Usr.Guest]]\n[[cd ..|Prompt]]",
+		"body": "$ list\nroot/\nguest/\n> \n[[changedir root|Usr.Root]]\n[[changedir guest|Usr.Guest]]\n[[changedir ..|Prompt]]",
 		"position": {
 			"x": 579,
 			"y": 534
@@ -62,7 +62,7 @@
 	{
 		"title": "Dev",
 		"tags": "",
-		"body": "$ ls\nled\n>\n-> ./led 0 0 <<if $computer_led_1 is true>>\n    <<set $computer_led_1 to false>>\n    LED0 state: disabled\n    [[Dev]]\n-> ./led 0 1 <<if $computer_led_1 is false>>\n    <<set $computer_led_1 to true>>\n    LED0 state: enabled\n    [[Dev]]\n-> ./led 1 0 <<if $computer_led_2 is true>>\n    <<set $computer_led_2 to false>>\n    LED1 state: disabled\n    [[Dev]]\n-> ./led 1 1 <<if $computer_led_2 is false>>\n    <<set $computer_led_2 to true>>\n    LED1 state: enabled\n    [[Dev]]\n-> ./led 2 0 <<if $computer_led_3 is true>>\n    <<set $computer_led_3 to false>>\n    LED2 state: disabled\n    [[Dev]]\n-> ./led 2 1 <<if $computer_led_3 is false>>\n   <<set $computer_led_3 to true>>\n    LED2 state: enabled\n   [[Dev]]\n-> cd ..\n   [[Prompt]]",
+		"body": "$ list\nled.exe\n>\n-> run led.exe 0 0 <<if $computer_led_1 is true>>\n    <<set $computer_led_1 to false>>\n    LED0 state: disabled\n    [[Dev]]\n-> run led.exe 0 1 <<if $computer_led_1 is false>>\n    <<set $computer_led_1 to true>>\n    LED0 state: enabled\n    [[Dev]]\n-> run led.exe 1 0 <<if $computer_led_2 is true>>\n    <<set $computer_led_2 to false>>\n    LED1 state: disabled\n    [[Dev]]\n-> run led.exe 1 1 <<if $computer_led_2 is false>>\n    <<set $computer_led_2 to true>>\n    LED1 state: enabled\n    [[Dev]]\n-> run led.exe 2 0 <<if $computer_led_3 is true>>\n    <<set $computer_led_3 to false>>\n    LED2 state: disabled\n    [[Dev]]\n-> run led.exe 2 1 <<if $computer_led_3 is false>>\n   <<set $computer_led_3 to true>>\n    LED2 state: enabled\n   [[Dev]]\n-> changedir ..\n   [[Prompt]]",
 		"position": {
 			"x": 183,
 			"y": 533
@@ -72,7 +72,7 @@
 	{
 		"title": "Hack1",
 		"tags": "",
-		"body": "Enter password:\n0x[$key_target]\n0x[$key_current]\n[[Abort|Usr.Root]]\n[[Hack1.Success]]\n[[Hack1.Failure]]",
+		"body": "<<setpuzzle Dialogue intro>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n[[Abort|Usr.Root]]\n[[HIDDEN|Hack1.Success]]\n[[HIDDEN|Hack1.Failure]]",
 		"position": {
 			"x": 319,
 			"y": 1129
@@ -102,7 +102,7 @@
 	{
 		"title": "Usr.Root",
 		"tags": "",
-		"body": "$ ls\npasswords.txt.enc\n>\n-> hack passwords.txt.enc <<if $path_set is 1>>\n    [[Hack1]]\n-> cd ..\n   [[Usr]]",
+		"body": "$ list\npasswords.txt.enc\n>\n-> run hack passwords.txt.enc <<if $path_set is 1>>\n    [[Hack1]]\n-> open passwords.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    CE C0 95 C5 F8 25 B0 24 38 A3 \n    58 5E DA 89 3E EF 9D 8B 1B 44\n    EF 2A AD F1 94 E9 FE 82 29 F8\n    F0 8B A2 DF 5B F0\n    --- END ENCRYPTED DATA ---\n    [[Usr.Root]]\n-> changedir ..\n    [[Usr]]",
 		"position": {
 			"x": 522,
 			"y": 834
@@ -122,17 +122,17 @@
 	{
 		"title": "Usr.Guest",
 		"tags": "",
-		"body": "$ ls\npokemans.exe\n<<if $hacked_pokemans is 1>>\npokemans.hacked.exe\n<<endif>>\n>\n-> ./pokemans.exe\n    [[Pokemans]]\n-> hack ./pokemans.exe <<if $path_set is 1 and $visited_pokemans is 1 and $hacked_pokemans is 0>>\n    <<set $hacked_pokemans to 1>>\n    [[Usr.Guest]]\n-> ./pokemans.hacked.exe <<if $hacked_pokemans is 1>>\n    [[Pokemans.Hacked]]\n-> cd ..\n   [[Usr]]",
+		"body": "$ list\npokemans.exe\n<<if $hacked_pokemans is 1>>\npokemans.hacked.exe\n<<endif>>\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> run hack pokemans.exe <<if $path_set is 1 and $visited_pokemans is 1 and $hacked_pokemans is 0>>\n    <<set $hacked_pokemans to 1>>\n    [[Usr.Guest]]\n-> run pokemans.hacked.exe <<if $hacked_pokemans is 1>>\n    [[Pokemans.Hacked]]\n-> changedir ..\n   [[Usr]]",
 		"position": {
 			"x": 854,
-			"y": 822
+			"y": 824
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Bin",
 		"tags": "",
-		"body": "$ ls \nqux\nhack\n>\n-> ./qux\n    [[Qux]]\n-> ./hack\n    Nothing to hack! Maybe add to $PATH?\n    <<set $show_path_set to 1>>\n    [[Bin]]\n-> export PATH=$PATH:/bin <<if $path_set is 0 and $show_path_set is 1>>\n    Done.\n    <<set $path_set to 1>>\n    [[Bin]]\n-> cd ..\n    [[Prompt]]",
+		"body": "$ list \nqux.exe\nhack.exe\n>\n-> run qux.exe\n    [[Qux]]\n-> run hack.ee\n    Nothing to hack! \n    <<if $path_set is 0>>hack command is missing from $PATH!<<endif>>\n    <<if $path_set is 1>>Try running from other locations.<<endif>>\n    <<set $show_path_set to 1>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $path_set is 0 and $show_path_set is 1>>\n    Done.\n    <<set $path_set to 1>>\n    [[Bin]]\n-> changedir ..\n    [[Prompt]]",
 		"position": {
 			"x": -115,
 			"y": 516
@@ -142,10 +142,10 @@
 	{
 		"title": "DEBUG",
 		"tags": "",
-		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> Back\n   [[Prompt]]",
+		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> Set bitmask state\n   <<set $path_set to 1>>\n   <<set $visited_pokemans to 1>>\n   <<set $hacked_pokemans to 1>>\n   [[Usr.Root]]\n-> Back\n   [[Prompt]]",
 		"position": {
-			"x": 1022,
-			"y": 201
+			"x": 1129,
+			"y": 251
 		},
 		"colorID": 0
 	}

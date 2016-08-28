@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
   public DialogueStorage storage;
-
   public GameObject dialogueContainer;
   public GameObject continuePrompt;
   public Text lineText;
   public List<Button> optionButtons;
   public RectTransform gameControlsContainer;
+  public Bitmasks bitmasks;
 
+  public BitmaskPuzzle puzzle { set; get; }
+    
   private Yarn.OptionChooser SetSelectedOption;
 
   [Tooltip("How quickly to show the text, in seconds per character")]
@@ -38,6 +40,7 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
       button.gameObject.SetActive(false);
     }
     lineText.gameObject.SetActive(false);
+    bitmasks.gameObject.SetActive(false);
   }
 
   private string CheckVars(string input) {
@@ -150,5 +153,15 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
       gameControlsContainer.gameObject.SetActive(true);
     }
     yield break;
+  }
+
+  public void SetPuzzle(BitmaskPuzzle puzzle) {
+    bitmasks.gameObject.SetActive(true);
+    bitmasks.SetPuzzle(puzzle);
+  }
+
+  public void ClearPuzzle() {
+    bitmasks.SetPuzzle(null);
+    bitmasks.gameObject.SetActive(false);
   }
 }

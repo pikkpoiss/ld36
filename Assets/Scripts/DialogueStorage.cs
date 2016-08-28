@@ -64,6 +64,10 @@ public class DialogueStorage : VariableStorageBehaviour {
     }
   }
     
+  public void SetValue(string variableName, string value) {
+    SetValue(variableName, new Yarn.Value(value));
+  }
+
   public override void SetValue(string variableName, Yarn.Value value) {
     variables[variableName] = new Yarn.Value(value);
     if (variableName.StartsWith("$computer_")) {

@@ -242,8 +242,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010981940360}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.772, y: 1.116, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -733,11 +733,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enabledMaterial: {fileID: 2100000, guid: 57250958041a84bf7b22d60d54475497, type: 2}
   disabledMaterial: {fileID: 2100000, guid: ce3d631c6b13e4327b236aefdcbd9fef, type: 2}
-  bit1: {fileID: 23000010127271886}
-  bit2: {fileID: 23000010681087158}
-  bit3: {fileID: 23000010053752032}
-  bit4: {fileID: 23000012359050870}
-  bit5: {fileID: 23000012034877456}
-  bit6: {fileID: 23000011886401070}
-  bit7: {fileID: 23000013615462028}
-  bit8: {fileID: 23000014280783978}
+  bits:
+  - {fileID: 23000010127271886}
+  - {fileID: 23000010681087158}
+  - {fileID: 23000010053752032}
+  - {fileID: 23000012359050870}
+  - {fileID: 23000012034877456}
+  - {fileID: 23000011886401070}
+  - {fileID: 23000013615462028}
+  - {fileID: 23000014280783978}
