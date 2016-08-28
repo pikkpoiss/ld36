@@ -5,6 +5,7 @@ using Yarn.Unity;
 
 public class DialogueStorage : VariableStorageBehaviour {
   public Computer computer;
+  public Hackboy hackboy;
 
   private Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
 
@@ -105,7 +106,9 @@ public class DialogueStorage : VariableStorageBehaviour {
   }
 
   public void EnableOperation(string name) {
-    enabledOperations_.Add(BitmaskOperation.GetByName(name));
+    BitmaskOperation op = BitmaskOperation.GetByName(name);
+    enabledOperations_.Add(op);
+    hackboy.SetEnabledOperations(enabledOperations_);
   }
 
   public HashSet<BitmaskOperation> EnabledOperations() {
