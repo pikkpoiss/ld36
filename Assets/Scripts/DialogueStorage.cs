@@ -79,6 +79,12 @@ public class DialogueStorage : VariableStorageBehaviour {
           computer.SetValue(variableName, value.AsBool);
           break;
       }
+    } else if (variableName.StartsWith("$hackboy_")) {
+      switch (value.type) {
+        case Yarn.Value.Type.Bool:
+          hackboy.SetValue(variableName, value.AsBool);
+          break;
+      }
     }
   }
 
@@ -113,5 +119,9 @@ public class DialogueStorage : VariableStorageBehaviour {
 
   public HashSet<BitmaskOperation> EnabledOperations() {
     return enabledOperations_;
+  }
+
+  public void EnablePuzzle(ref BitmaskPuzzle puzzle) {
+    hackboy.SetEnabledPuzzle(puzzle, enabledOperations_);
   }
 }

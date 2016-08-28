@@ -102,7 +102,7 @@
 	{
 		"title": "Usr.Root",
 		"tags": "",
-		"body": "$ list\npasswords.txt.enc\n>\n-> run hack passwords.txt.enc <<if $path_set is 1>>\n    [[Hack1]]\n-> open passwords.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    CE C0 95 C5 F8 25 B0 24 38 A3 \n    58 5E DA 89 3E EF 9D 8B 1B 44\n    EF 2A AD F1 94 E9 FE 82 29 F8\n    F0 8B A2 DF 5B F0\n    --- END ENCRYPTED DATA ---\n    [[Usr.Root]]\n-> changedir ..\n    [[Usr]]",
+		"body": "$ list\npasswords.txt.enc\n>\n-> run hack passwords.txt.enc <<if $hackboy_hack_path is true>>\n    [[Hack1]]\n-> open passwords.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    CE C0 95 C5 F8 25 B0 24 38 A3 \n    58 5E DA 89 3E EF 9D 8B 1B 44\n    EF 2A AD F1 94 E9 FE 82 29 F8\n    F0 8B A2 DF 5B F0\n    --- END ENCRYPTED DATA ---\n    [[Usr.Root]]\n-> changedir ..\n    [[Usr]]",
 		"position": {
 			"x": 511,
 			"y": 824
@@ -122,7 +122,7 @@
 	{
 		"title": "Usr.Guest",
 		"tags": "",
-		"body": "$ list\npokemans.exe\n<<if $hacked_pokemans is 1>>\npokemans.hacked.exe\n<<endif>>\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> run hack pokemans.exe <<if $path_set is 1 and $visited_pokemans is 1 and $hacked_pokemans is 0>>\n    <<set $hacked_pokemans to 1>>\n    [[Usr.Guest]]\n-> run pokemans.hacked.exe <<if $hacked_pokemans is 1>>\n    [[Pokemans.Hacked]]\n-> changedir ..\n   [[Usr]]",
+		"body": "$ list\npokemans.exe\n<<if $hacked_pokemans is true>>\npokemans.hacked.exe\n<<endif>>\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> run hack pokemans.exe <<if $hackboy_hack_path is true and $visited_pokemans is true and $hacked_pokemans is false>>\n    <<set $hacked_pokemans to true>>\n    [[Usr.Guest]]\n-> run pokemans.hacked.exe <<if $hacked_pokemans is false>>\n    [[Pokemans.Hacked]]\n-> changedir ..\n   [[Usr]]",
 		"position": {
 			"x": 854,
 			"y": 824
@@ -132,7 +132,7 @@
 	{
 		"title": "Bin",
 		"tags": "",
-		"body": "$ list \nqux.exe\nhack.exe\n>\n-> run qux.exe\n    [[Qux]]\n-> run hack.exe\n    Nothing to hack! \n    <<if $path_set is 0>>hack command is missing from $PATH!<<endif>>\n    <<if $path_set is 1>>Try running from other locations.<<endif>>\n    <<set $show_path_set to 1>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $path_set is 0 and $show_path_set is 1>>\n    Done.\n    <<set $path_set to 1>>\n    [[Bin]]\n-> changedir ..\n    [[Root]]",
+		"body": "$ list \nqux.exe\nhack.exe\n>\n-> run qux.exe\n    [[Qux]]\n-> run hack.exe\n    Nothing to hack! \n    <<if $hackboy_hack_path is false>>hack command is missing from $PATH!<<endif>>\n    <<if $hackboy_hack_path is true>>Try running from other locations.<<endif>>\n    <<set $show_hackboy_hack_path to true>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $hackboy_hack_path is false and $show_hackboy_hack_path is true>>\n    Done.\n    <<set $hackboy_hack_path to true>>\n    [[Bin]]\n-> changedir ..\n    [[Root]]",
 		"position": {
 			"x": -112,
 			"y": 537
@@ -142,7 +142,7 @@
 	{
 		"title": "DEBUG",
 		"tags": "",
-		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> State: hack1\n   <<set $path_set to 1>>\n   <<set $visited_pokemans to 1>>\n   <<set $hacked_pokemans to 1>>\n   [[Usr.Root]]\n-> Back\n   [[Root]]",
+		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> State: hack1\n   <<set $hackboy_hack_path to true>>\n   <<set $visited_pokemans to true>>\n   <<set $hacked_pokemans to true>>\n   [[Usr.Root]]\n-> Back\n   [[Root]]",
 		"position": {
 			"x": 1129,
 			"y": 251

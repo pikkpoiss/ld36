@@ -8,15 +8,35 @@ ModelImporter:
     100000: //RootNode
     100002: Hackboy
     100004: Screen
+    100006: LED1
+    100008: LED2
+    100010: LED3
+    100012: LED4
     400000: //RootNode
     400002: Hackboy
     400004: Screen
+    400006: LED1
+    400008: LED2
+    400010: LED3
+    400012: LED4
     2300000: Hackboy
     2300002: Screen
+    2300004: LED1
+    2300006: LED2
+    2300008: LED3
+    2300010: LED4
     3300000: Hackboy
     3300002: Screen
+    3300004: LED1
+    3300006: LED2
+    3300008: LED3
+    3300010: LED4
     4300000: Screen
     4300002: Hackboy
+    4300004: LED1
+    4300006: LED2
+    4300008: LED3
+    4300010: LED4
     7400000: Default Take
     9500000: //RootNode
   materials:
