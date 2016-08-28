@@ -52,7 +52,7 @@
 	{
 		"title": "Hack.Xor5",
 		"tags": "",
-		"body": "<<setpuzzle Dialogue hack_xor5>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Xor5]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Droskow]]\n-> SUCCESS\n    Decrypted module!\n    Installing xor5 module... done.\n    <<enable Dialogue xor5>>\n    <<set $module_xor5 to true>>\n    [[Usr.Droskow]]\n-> FAILURE\n    Failure!\n    [[Usr.Droskow]]\n    ",
+		"body": "<<setpuzzle Dialogue hack_xor5>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Xor5]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Droskow]]\n-> SUCCESS\n    <<clearpuzzle Dialogue>>\n    Decrypted module!\n    Installing xor5 module... done.\n    <<enable Dialogue xor5>>\n    <<set $module_xor5 to true>>\n    [[Usr.Droskow]]\n-> FAILURE\n    Failure!\n    [[Usr.Droskow]]\n    ",
 		"position": {
 			"x": 1813,
 			"y": 838
@@ -82,7 +82,7 @@
 	{
 		"title": "Usr.Mbishop",
 		"tags": "",
-		"body": "$ list\npokemans.exe\njoke.txt.enc\n>\n-> open joke.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    23 5A 79 B3 27 0D 79 05 05 E0\n    BE A2 CF 5C 14 9F 90 38 82 1B\n    --- END ENCRYPTED DATA ---\n-> hack joke.txt.enc <<if $hack_module is true>>\n    [[Hack.Joke]]\n-> run pokemans.exe\n    [[Pokemans]]\n-> changedir ..\n    [[Usr]]",
+		"body": "$ list\npokemans.exe\njoke.txt.enc\n>\n-> open joke.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    23 5A 79 B3 27 0D 79 05 05 E0\n    BE A2 CF 5C 14 9F 90 38 82 1B\n    --- END ENCRYPTED DATA ---\n    [[Usr.Mbishop]]\n-> hack joke.txt.enc <<if $hack_module is true>>\n    [[Hack.Joke]]\n-> run pokemans.exe\n    [[Pokemans]]\n-> changedir ..\n    [[Usr]]",
 		"position": {
 			"x": 742,
 			"y": 813
@@ -102,7 +102,7 @@
 	{
 		"title": "DEBUG",
 		"tags": "",
-		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> State: hack1\n   <<set $hack_module to true>>\n   [[Usr.Root]]\n-> State: pokemans\n   [[Pokemans]]\n-> Back\n   [[Root]]",
+		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> State: hack_joke\n   <<set $hack_module to true>>\n   [[Usr.Mbishop]]\n-> State: pokemans\n   [[Pokemans]]\n-> Back\n   [[Root]]",
 		"position": {
 			"x": 1559,
 			"y": 131
@@ -162,7 +162,7 @@
 	{
 		"title": "Hack.Joke",
 		"tags": "",
-		"body": "<<setpuzzle Dialogue hack_joke>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Joke]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Mbishop]]\n-> SUCCESS\n    Decrypted file! Contents:\n\n      Q: Why can't you have a\n         nose 12 inches long?\n      A: Because then it would\n         be a foot!\n    \n    [[Usr.Mbishop]]\n-> FAILURE\n    Failure!\n    [[Usr.Mbishop]]\n    ",
+		"body": "<<setpuzzle Dialogue hack_joke>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Joke]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Mbishop]]\n-> SUCCESS\n    <<clearpuzzle Dialogue>>\n    Decrypted file! Contents:\n\n      Q: Why can't you have a\n         nose 12 inches long?\n      A: Because then it would\n         be a foot!\n    \n    [[Usr.Mbishop]]\n-> FAILURE\n    Failure!\n    [[Usr.Mbishop]]\n    ",
 		"position": {
 			"x": 522,
 			"y": 1450
