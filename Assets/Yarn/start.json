@@ -2,7 +2,7 @@
 	{
 		"title": "Root",
 		"tags": "",
-		"body": "$ list\nbin/\ndev/\nusr/\n> \n<<enable Dialogue shiftleft>>\n<<enable Dialogue shiftright>>\n-> DEBUG <<if $debug is true>>\n   [[DEBUG]]\n-> changedir bin\n   [[Bin]]\n-> changedir dev\n   [[Dev]]\n-> changedir usr\n   [[Usr]]",
+		"body": "$ list\nbin/\ndev/\nusr/\n> \n<<enable Dialogue shiftleft>>\n<<enable Dialogue shiftright>>\n-> DEBUG <<if $debug is true>>\n    [[DEBUG]]\n-> changedir bin\n    [[Bin]]\n-> changedir dev\n    [[Dev]]\n-> changedir usr\n    [[Usr]]\n-> exit\n    System is shutting down now!\n   <<exit Dialogue>>",
 		"position": {
 			"x": 546,
 			"y": 128

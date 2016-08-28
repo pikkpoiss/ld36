@@ -7,12 +7,16 @@ digraph {
   enable_right [label="Enable shiftright"]
   enable_hack [label="Enable hack"]
   enable_invert [label="Enable invert"]
-  {rank=same; enable_left; enable_right}
+  enable_add32 [label="Enable add32"]
 
   puzzle_hack1 [label="Puzzle: hack1"]
+  puzzle_hack2 [label="Puzzle: hack2"]
+  puzzle_hack3 [label="Puzzle: hack3"]
+  puzzle_hack4 [label="Puzzle: hack4"]
 
-  boot [label="boot"]
+  boot
   root [label="/"]
+  win
 
   usr [label="/usr"]
   dev [label="/dev"]
@@ -20,23 +24,46 @@ digraph {
   {rank=same; usr; dev; bin}
 
   usr_root [label="/usr/root"]
-  usr_guest [label="/usr/guest"]
-  {rank=same; usr_root; usr_guest}
+  usr_mbishop [label="/usr/mbishop"]
+  usr_dcrease [label="/usr/dcrease"]
+  usr_droskow [label="/usr/droskow"]
 
-  root -> boot
-  enable_left -> boot
-  enable_right -> boot
+  root -> boot [color=blue]
+  enable_left -> boot [color=blue]
+  enable_right -> boot [color=blue]
 
-  dev -> root
-  bin -> root
-  usr -> root
+  dev -> root [color=blue]
+  bin -> root [color=blue]
+  usr -> root [color=blue]
 
-  usr_root -> usr
-  usr_guest -> usr
+  usr_mbishop -> usr
+  usr_dcrease -> puzzle_hack1
+  usr_droskow -> usr
 
-  enable_hack -> bin
+  usr_root -> puzzle_hack4
+  usr_root -> usr [color=blue]
 
-  puzzle_hack1 -> usr_root
-  puzzle_hack1 -> enable_hack
-  puzzle_hack1 -> enable_left
+  enable_hack -> bin [color=blue]
+
+  enable_right -> usr_droskow
+
+  puzzle_hack1 -> usr_mbishop
+  puzzle_hack1 -> enable_hack [color=blue]
+  puzzle_hack1 -> enable_left [color=blue]
+
+  puzzle_hack2 -> enable_invert
+  puzzle_hack2 -> enable_add32
+
+  puzzle_hack3 -> enable_right
+  puzzle_hack3 -> enable_invert
+
+  puzzle_hack4 -> enable_left
+  puzzle_hack4 -> enable_right
+  puzzle_hack4 -> enable_invert
+  puzzle_hack4 -> enable_add32
+
+  enable_invert -> dev
+  enable_add32 -> usr_dcrease
+
+  win -> usr_root
 }

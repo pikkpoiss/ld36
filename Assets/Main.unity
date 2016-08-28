@@ -318,7 +318,7 @@ Prefab:
     - target: {fileID: 2300004, guid: 99d4fbfcf873240889e047241098364f, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 7a18f3788dfaf412cbaa216b8258e637, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 2300004, guid: 99d4fbfcf873240889e047241098364f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -1361,7 +1361,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 1
           m_BoolArgument: 0

@@ -14,7 +14,12 @@ public class Dialogue : MonoBehaviour {
       { "hack1", BitmaskPuzzle.Get(BitmaskPuzzle.Difficulty.Easy, BitmaskOperation.shiftLeft) }
     };
   }
-    
+
+  [YarnCommand("exit")]
+  public void Exit() {
+    Application.Quit();
+  }
+
   [YarnCommand("enable")]
   public void Enable(string name) {
     storage.EnableOperation(name);
