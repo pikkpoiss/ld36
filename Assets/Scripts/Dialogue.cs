@@ -11,7 +11,7 @@ public class Dialogue : MonoBehaviour {
 
   private void Awake() {
     puzzles_ = new Dictionary<string, BitmaskPuzzle>() {
-      { "intro", BitmaskPuzzle.Get(BitmaskPuzzle.Difficulty.Easy, BitmaskOperation.shiftLeft) }
+      { "hack1", BitmaskPuzzle.Get(BitmaskPuzzle.Difficulty.Easy, BitmaskOperation.shiftLeft) }
     };
   }
     
