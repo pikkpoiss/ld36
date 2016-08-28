@@ -112,7 +112,7 @@
 	{
 		"title": "Pokemans",
 		"tags": "",
-		"body": "Pokemans.exe\n============\n\nMust identify and catalogue\nevery Pokeman!\n\n<<set $visited_pokemans to 1>>\n[[Usr.Guest]]",
+		"body": "Pokemans.exe\n============\n\nMust identify and catalogue\nevery Pokeman!\n\n<<set $visited_pokemans to true>>\n[[Usr.Guest]]",
 		"position": {
 			"x": 761,
 			"y": 1125
@@ -122,10 +122,10 @@
 	{
 		"title": "Usr.Guest",
 		"tags": "",
-		"body": "$ list\npokemans.exe\n<<if $hacked_pokemans is true>>\npokemans.hacked.exe\n<<endif>>\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> run hack pokemans.exe <<if $hackboy_hack_path is true and $visited_pokemans is true and $hacked_pokemans is false>>\n    <<set $hacked_pokemans to true>>\n    [[Usr.Guest]]\n-> run pokemans.hacked.exe <<if $hacked_pokemans is false>>\n    [[Pokemans.Hacked]]\n-> changedir ..\n   [[Usr]]",
+		"body": "$ list\npokemans.exe\n<<if $hacked_pokemans is true>>\npokemans.hacked.exe\n<<endif>>\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> run hack pokemans.exe <<if $hackboy_hack_path is true and $visited_pokemans is true and $hacked_pokemans is false>>\n    <<set $hacked_pokemans to true>>\n    [[Usr.Guest]]\n-> run pokemans.hacked.exe <<if $hacked_pokemans is true>>\n    [[Pokemans.Hacked]]\n-> changedir ..\n   [[Usr]]",
 		"position": {
 			"x": 854,
-			"y": 824
+			"y": 829
 		},
 		"colorID": 0
 	},
