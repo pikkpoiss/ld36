@@ -18,28 +18,38 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
   private Dictionary<int, SelectedOptionAction> SetSelectedOptionMap = new Dictionary<int, SelectedOptionAction>();
 
   private class SelectedOptionAction {
-    private int option_;
-    private string label_;
+    public string label_;
     private BitmaskOperation operation_ = null;
     private BitmaskPuzzle puzzle_ = null;
+    private int normalOption_;
+    private int successOption_;
+    private int failureOption_;
 
     public SelectedOptionAction(int option, string label) {
-      option_ = option;
+      normalOption_ = option;
       label_ = label;
     }
 
-    public SelectedOptionAction(BitmaskOperation operation, int option, ref BitmaskPuzzle puzzle) {
-      operation_ = operation;
-      option_ = option;
+    public SelectedOptionAction(BitmaskOperation op, ref BitmaskPuzzle puzzle, int option, int success, int failure) {
+      operation_ = op;
       puzzle_ = puzzle;
-      label_ = operation.Label();
+      label_ = op.Label();
+      normalOption_ = option;
+      successOption_ = success;
+      failureOption_ = failure;
     }
 
     public void Act(Yarn.OptionChooser chooser) {
       if (operation_ != null) {
-        operation_.Act(ref puzzle_);
+        operation_.Apply(ref puzzle_);
+        if (puzzle_.solved) {
+          Debug.Log("Puzzle was solved");
+          chooser(successOption_);
+          return;
+        }
+        // TODO: Failure mode.
       }
-      chooser(option_);
+      chooser(normalOption_);
     }
 
     public string label {
@@ -136,19 +146,33 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
     }
     List<SelectedOptionAction> actions = new List<SelectedOptionAction>();
     int optionIndex = 0;
+    int successIndex = -1;
+    int failureIndex = -1;
     foreach (var optionString in optionsCollection.options) {
       switch (optionString.Trim()) {
         case "SUCCESS":
+          successIndex = optionIndex;
           break;
         case "FAILURE":
+          failureIndex = optionIndex;
           break;
+      }
+      optionIndex++;
+    }
+    optionIndex = 0;
+    foreach (var optionString in optionsCollection.options) {
+      switch (optionString.Trim()) {
         case "COMMANDS":
           foreach (BitmaskOperation op in storage.EnabledOperations()) {
-            actions.Add(new SelectedOptionAction(op, optionIndex, ref puzzle_));
+            actions.Add(new SelectedOptionAction(op, ref puzzle_, optionIndex, successIndex, failureIndex));
           }
           break;
         case "ABORT":
           actions.Add(new SelectedOptionAction(optionIndex, "Abort"));
+          break;
+        case "SUCCESS":
+          break;
+        case "FAILURE":
           break;
         default:
           actions.Add(new SelectedOptionAction(optionIndex, optionString));

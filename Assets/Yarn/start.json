@@ -82,7 +82,7 @@
 	{
 		"title": "Hack1.Success",
 		"tags": "",
-		"body": "You're in!\n[[Usr.Root]]",
+		"body": "<<clearpuzzle Dialogue>>\nYou're in!\n[[Usr.Root]]",
 		"position": {
 			"x": 408,
 			"y": 1451
@@ -92,7 +92,7 @@
 	{
 		"title": "Hack1.Failure",
 		"tags": "",
-		"body": "Invalid! Attempts remaining: [$remaining]\n[[Hack1]]",
+		"body": "<<clearpuzzle Dialogue>>\nInvalid! Attempts remaining: [$remaining]\n[[Hack1]]",
 		"position": {
 			"x": 160,
 			"y": 1455

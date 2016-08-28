@@ -7,14 +7,25 @@ public class BitmaskPuzzle {
   private int currentValue_;
   private int maxBits = 8;
 
-  public int targetValue { get; private set; }
+  private int targetValue_;
+  public int targetValue { 
+    get { return targetValue_; }
+    private set { targetValue_ = cap(value); }
+  }
+   
   public int startValue { get; private set; }
   public int currentValue { 
     get { return currentValue_; }
-    set {
-      int maxValue = (int)Mathf.Pow(2.0f, maxBits) - 1;
-      currentValue_ = value & maxValue;
-    }
+    set { currentValue_ = cap(value); }
+  }
+
+  private int cap(int input) {
+    int maxValue = (int)Mathf.Pow(2.0f, maxBits) - 1;
+    return input & maxValue;
+  }
+
+  public bool solved {
+    get { return currentValue == targetValue; }
   }
 
   public void Reset() {
@@ -28,8 +39,17 @@ public class BitmaskPuzzle {
   }
 
   BitmaskPuzzle(Difficulty diff, HashSet<BitmaskOperation> required) {
+    List<BitmaskOperation> operations = new List<BitmaskOperation>(required);
+    int addl = (int)Mathf.Max((int)diff, (int)operations.Count) - operations.Count;
+    while (addl > 0) {
+      operations.Add(operations[Random.Range(0, operations.Count)]);
+      addl--;
+    }
     startValue = Random.Range(1, 256);
     currentValue = startValue;
-    targetValue = Random.Range(1, 256); // TODO: Determine from applying operations.
+    targetValue = startValue;
+    foreach (BitmaskOperation operation in operations) {
+      targetValue = operation.Act(targetValue);
+    }
   }
 }

@@ -3,8 +3,8 @@
     return "Shift Left";
   }
 
-  override public void Act(ref BitmaskPuzzle puzzle) {
-    puzzle.currentValue = puzzle.currentValue << 1;
+  override public int Act(int input) {
+    return input << 1;
   }
 }
 
@@ -13,8 +13,8 @@ public class ShiftRight : BitmaskOperation {
     return "Shift Right";
   }
 
-  override public void Act(ref BitmaskPuzzle puzzle) {
-    puzzle.currentValue = puzzle.currentValue >> 1;
+  override public int Act(int input) {
+    return input >> 1;
   }
 }
 
@@ -23,8 +23,8 @@ public class Negate : BitmaskOperation {
     return "Negate";
   }
 
-  override public void Act(ref BitmaskPuzzle puzzle) {
-    puzzle.currentValue = ~puzzle.currentValue;
+  override public int Act(int input) {
+    return ~input;
   }
 }
 
@@ -49,6 +49,11 @@ public class BitmaskOperation  {
     return "Bitmask Operation";
   }
 
-  virtual public void Act(ref BitmaskPuzzle puzzle) {
+  virtual public int Act(int input) {
+    return input;
+  }
+
+  virtual public void Apply(ref BitmaskPuzzle puzzle) {
+    puzzle.currentValue = Act(puzzle.currentValue);
   }
 }
