@@ -12,7 +12,7 @@
 	{
 		"title": "Usr",
 		"tags": "",
-		"body": "$ list\ndcrease/\ndroskow/\nmbishop/\nroot/\n> \n[[changedir dcrease|Usr.Dcrease]]\n[[changedir droskow|Usr.Droskow]]\n[[changedir mbishop|Usr.Mbishop]]\n[[changedir root|Usr.Root]]\n[[changedir ..|Root]]",
+		"body": "$ list\ndcrease/\ndroskow/\nmbishop/\nroot/\n> \n-> changedir dcrease <<if $dcrease_readable is true>>\n    [[Usr.Dcrease]]\n-> changedir dcrease <<if $dcrease_readable is false>>\n    ERR: User dcrease has a protected\n    home directory!\n    [[Usr]]\n-> changedir droskow\n    [[Usr.Droskow]]\n-> changedir mbishop\n    [[Usr.Mbishop]]\n-> changedir root <<if $root_readable is true>>\n    [[Usr.Root]] \n-> changedir root <<if $root_readable is true>>\n    ERR: User root has a protected\n    home directory!\n    [[Usr]]\n-> changedir ..\n    [[Root]]\n",
 		"position": {
 			"x": 579,
 			"y": 534
@@ -20,19 +20,9 @@
 		"colorID": 0
 	},
 	{
-		"title": "Pokemans.Hacked",
-		"tags": "",
-		"body": "Pokemans.exe.hax0r3d\n====================\nRoot mode!!!!!!\n\n[[Usr.Guest]]",
-		"position": {
-			"x": 1034,
-			"y": 1126
-		},
-		"colorID": 0
-	},
-	{
 		"title": "Alarmtest",
 		"tags": "",
-		"body": "<<start DoomClock 30>>\nSounding alarm in 30 seconds!\nPress 'r' to reset.\nPress 's' to stop.\n\n--> r\n    [[Alarmtest]]\n--> s\n    <<stop DoomClock>>\n    Alarm cancelled!\n    [[Bin]]",
+		"body": "<<start DoomClock 30>>\nSounding alarm in 30 seconds!\nPress 'R' to reset.\nPress 'S' to stop.\n\n-> Press 'R'\n    [[Alarmtest]]\n-> Press 'S'\n    <<stop DoomClock>>\n    Alarm cancelled!\n    [[Bin]]",
 		"position": {
 			"x": -269,
 			"y": 808
@@ -64,8 +54,8 @@
 		"tags": "",
 		"body": "<<setpuzzle Dialogue hack1>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack1]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Root]]\n-> SUCCESS\n    [[Hack1.Success]]\n-> FAILURE\n    [[Hack1.Failure]]",
 		"position": {
-			"x": 319,
-			"y": 1130
+			"x": 122,
+			"y": 1121
 		},
 		"colorID": 0
 	},
@@ -74,8 +64,8 @@
 		"tags": "",
 		"body": "<<clearpuzzle Dialogue>>\nYou're in!\n[[Usr.Root]]",
 		"position": {
-			"x": 408,
-			"y": 1451
+			"x": 379,
+			"y": 1448
 		},
 		"colorID": 0
 	},
@@ -84,8 +74,8 @@
 		"tags": "",
 		"body": "<<clearpuzzle Dialogue>>\nInvalid! Attempts remaining: [$remaining]\n[[Hack1]]",
 		"position": {
-			"x": 160,
-			"y": 1455
+			"x": 102,
+			"y": 1443
 		},
 		"colorID": 0
 	},
@@ -94,28 +84,28 @@
 		"tags": "",
 		"body": "$ list\npasswords.txt.enc\n>\n-> run hack passwords.txt.enc <<if $hackboy_hack_path is true>>\n    [[Hack1]]\n-> open passwords.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    CE C0 95 C5 F8 25 B0 24 38 A3 \n    58 5E DA 89 3E EF 9D 8B 1B 44\n    EF 2A AD F1 94 E9 FE 82 29 F8\n    F0 8B A2 DF 5B F0\n    --- END ENCRYPTED DATA ---\n    [[Usr.Root]]\n-> changedir ..\n    [[Usr]]",
 		"position": {
-			"x": 511,
-			"y": 824
+			"x": 376,
+			"y": 829
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Pokemans",
 		"tags": "",
-		"body": "Pokemans.exe\n============\n\nMust identify and catalogue\nevery Pokeman!\n\n<<set $visited_pokemans to true>>\n[[Usr.Guest]]",
+		"body": "Pokemans.exe\n============\nCopyright 1980 Donald Crease\n\nObjective: Identify and catalogue\nevery Pokeman!\n\n<<set $pokeman_collected to 0>>\n[[Pokemans.Loop]]",
 		"position": {
-			"x": 761,
-			"y": 1125
+			"x": 1023,
+			"y": 1043
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Usr.Mbishop",
 		"tags": "",
-		"body": "$ list\npokemans.exe\n<<if $hacked_pokemans is true>>\npokemans.hacked.exe\n<<endif>>\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> run hack pokemans.exe <<if $hackboy_hack_path is true and $visited_pokemans is true and $hacked_pokemans is false>>\n    <<set $hacked_pokemans to true>>\n    [[Usr.Mbishop]]\n-> run pokemans.hacked.exe <<if $hacked_pokemans is true>>\n    [[Pokemans.Hacked]]\n-> changedir ..\n   [[Usr]]",
+		"body": "$ list\npokemans.exe\n>\n-> run pokemans.exe\n    [[Pokemans]]\n-> changedir ..\n   [[Usr]]",
 		"position": {
-			"x": 854,
-			"y": 829
+			"x": 742,
+			"y": 813
 		},
 		"colorID": 0
 	},
@@ -132,10 +122,60 @@
 	{
 		"title": "DEBUG",
 		"tags": "",
-		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> State: hack1\n   <<set $hackboy_hack_path to true>>\n   <<set $visited_pokemans to true>>\n   <<set $hacked_pokemans to true>>\n   [[Usr.Root]]\n-> Back\n   [[Root]]",
+		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> State: hack1\n   <<set $hackboy_hack_path to true>>\n   <<set $visited_pokemans to true>>\n   <<set $hacked_pokemans to true>>\n   [[Usr.Root]]\n-> State: pokemans\n   [[Pokemans]]\n-> Back\n   [[Root]]",
 		"position": {
 			"x": 1559,
 			"y": 131
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Usr.Droskow",
+		"tags": "",
+		"body": ">\n\n-> changedir ..\n   [[Usr]]",
+		"position": {
+			"x": 1808,
+			"y": 547
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Usr.Dcrease",
+		"tags": "",
+		"body": "$ list\nemail/\n>\n-> changedir email\n    [[Usr.Dcrease.Email]]\n-> changedir ..\n    [[Usr]]\n",
+		"position": {
+			"x": 1502,
+			"y": 818
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Pokemans.Loop",
+		"tags": "",
+		"body": "You have collected [$pokeman_collected] Pokemen.\n<<if $pokeman_collected is 0>>\n> A wild Manotaur appears!\n<<endif>>\n<<if $pokeman_collected is 1>>\n> A wild Charmister appears!\n<<endif>>\n<<if $pokeman_collected is 2>>\n> A wild Brodude appears!\n<<endif>>\n<<if $pokeman_collected is 3>>\n> A wild Pikachim appears!\n<<endif>>\n<<if $pokeman_collected is 4>>\n> A wild Mantwo appears!\n<<endif>>\n-> Collect!! <<if $pokeman_collected is 0>>\n    <<set $pokeman_collected to 1>>\n    Got it!\n    [[Pokemans.Loop]]\n-> Collect! <<if $pokeman_collected is 1>>\n    <<set $pokeman_collected to 2>>\n    Oooo boy got another!\n    [[Pokemans.Loop]]\n-> Collect <<if $pokeman_collected is 2>>\n    <<set $pokeman_collected to 3>>\n    Pokemans everywhere!\n    [[Pokemans.Loop]]\n-> Collect... <<if $pokeman_collected is 3>>\n    <<set $pokeman_collected to 4>>\n    I'll give anything to see something \n    other than a Pokeman.\n    [[Pokemans.Loop]]\n-> Ugh, collect already <<if $pokeman_collected is 4>>\n    <<set $pokeman_collected to 5>>\n    [[Pokemans.Win]]\n-> Don't collect\n    You missed it!\n    [[Pokemans.Loop]]\n-> Quit\n    [[Usr.Mbishop]]",
+		"position": {
+			"x": 1021,
+			"y": 1453
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Pokemans.Win",
+		"tags": "",
+		"body": "You collected all [$pokeman_collected] Pokemans!\nA new high score!\nEnter your initials:\n> \n\n-> '); SET READABLE $HOME; --\n    ERR: Output is \"SUCCESS: Set\n    /usr/dcrease world-readable\"\n    Stopping pokemans.exe\n    <<set $dcrease_readable to true>>\n    [[Usr.Mbishop]]",
+		"position": {
+			"x": 762,
+			"y": 1449
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Usr.Dcrease.Email",
+		"tags": "",
+		"body": "$ list\n>\n-> changedir ..\n   [[Usr.Dcrease]]\n",
+		"position": {
+			"x": 1510,
+			"y": 1094
 		},
 		"colorID": 0
 	}

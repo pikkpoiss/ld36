@@ -9,6 +9,8 @@ digraph {
   enable_invert [label="Enable invert", fillcolor=blue, fontcolor=white]
   enable_add32 [label="Enable add32", fillcolor=blue, fontcolor=white]
 
+
+  puzzle_led [label="Puzzle: LED", fillcolor=purple, fontcolor=white]
   puzzle_pokemans [label="Puzzle: pokemans.exe", fillcolor=purple, fontcolor=white]
   puzzle_xor5 [label="Puzzle: xor5.exe.enc", fillcolor=purple, fontcolor=white]
   puzzle_email [label="Puzzle: email", fillcolor=purple, fontcolor=white]
@@ -46,17 +48,18 @@ digraph {
 
   enable_hack -> bin [color=blue]
 
+  puzzle_led -> dev
 
   puzzle_pokemans -> usr_mbishop
-  puzzle_pokemans -> enable_hack [color=blue]
-  puzzle_pokemans -> enable_left [color=blue]
 
+  puzzle_xor5 -> enable_hack
   puzzle_xor5 -> enable_left
   puzzle_xor5 -> enable_add32
   puzzle_xor5 -> usr_droskow
 
   enable_xor5 -> puzzle_xor5
 
+  puzzle_email -> enable_hack
   puzzle_email -> enable_xor5
   puzzle_email -> enable_invert
   puzzle_email -> usr_dcrease_email
@@ -67,7 +70,7 @@ digraph {
   puzzle_getroot -> enable_add32
   puzzle_getroot -> usr
 
-  enable_invert -> dev
+  enable_invert -> puzzle_led
   enable_add32 -> usr_dcrease
 
   win -> usr_root
