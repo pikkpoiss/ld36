@@ -1,0 +1,42 @@
+digraph {
+  node [shape=box, fontsize=11]
+  graph [dpi = 100]
+  rankdir=BT
+
+  enable_left [label="Enable shiftleft"]
+  enable_right [label="Enable shiftright"]
+  enable_hack [label="Enable hack"]
+  enable_invert [label="Enable invert"]
+  {rank=same; enable_left; enable_right}
+
+  puzzle_hack1 [label="Puzzle: hack1"]
+
+  boot [label="boot"]
+  root [label="/"]
+
+  usr [label="/usr"]
+  dev [label="/dev"]
+  bin [label="/bin"]
+  {rank=same; usr; dev; bin}
+
+  usr_root [label="/usr/root"]
+  usr_guest [label="/usr/guest"]
+  {rank=same; usr_root; usr_guest}
+
+  root -> boot
+  enable_left -> boot
+  enable_right -> boot
+
+  dev -> root
+  bin -> root
+  usr -> root
+
+  usr_root -> usr
+  usr_guest -> usr
+
+  enable_hack -> bin
+
+  puzzle_hack1 -> usr_root
+  puzzle_hack1 -> enable_hack
+  puzzle_hack1 -> enable_left
+}
