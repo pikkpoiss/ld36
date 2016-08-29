@@ -2,7 +2,7 @@
 	{
 		"title": "Root",
 		"tags": "",
-		"body": "$ list\nbin/\ndev/\nusr/\n> \n<<enable Dialogue shiftleft>>\n-> DEBUG <<if $debug is true>>\n    [[DEBUG]]\n-> changedir bin\n    [[Bin]]\n-> changedir dev\n    [[Dev]]\n-> changedir usr\n    [[Usr]]\n-> exit\n    System is shutting down now!\n   <<exit Dialogue>>",
+		"body": "$ list\nbin/\ndev/\nusr/\n> \n-> DEBUG <<if $debug is true>>\n    [[DEBUG]]\n-> changedir bin\n    [[Bin]]\n-> changedir dev\n    [[Dev]]\n-> changedir usr\n    [[Usr]]\n-> exit\n    System is shutting down now!\n   <<exit Dialogue>>",
 		"position": {
 			"x": 546,
 			"y": 130
@@ -32,7 +32,7 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Booting...\n _______  _______  _______ \n|       ||       ||       |\n|  _____||   _   ||  _____|\n| |_____ |  | |  || |_____ \n|_____  ||  |_|  ||_____  |\n _____| ||       | _____| |\n|_______||_______||_______|\n\nSECURE OPERATING SYSTEM v0.9\n \"We're sure, it's secure\"\n[[Root]]",
+		"body": "Booting...\n _______  _______  _______ \n|       ||       ||       |\n|  _____||   _   ||  _____|\n| |_____ |  | |  || |_____ \n|_____  ||  |_|  ||_____  |\n _____| ||       | _____| |\n|_______||_______||_______|\n\nSECURE OPERATING SYSTEM v0.9\n \"We're sure, it's secure\"\n<<enable Dialogue shiftleft>>\n[[Root]]",
 		"position": {
 			"x": 546,
 			"y": -104
@@ -192,7 +192,7 @@
 	{
 		"title": "Win",
 		"tags": "",
-		"body": "<<set $hackboy_won to true>>\n> formatdisk /\nDeleting all files! You sure? [Yn]\n> Y\nDone!\n> logout\nThank you for using\nSecure Operating System!\n[connection terminated]\n..........................\n..........................\n..........................\n..........................\n..........................\n..........................\n..........................\n..........................\n<<exit Dialogue>>",
+		"body": "<<set $hackboy_won to true>>\n> formatdisk /\nDeleting all files! You sure? [Yn]\n> Y\nDone!\n> logout\nThank you for using\nSecure Operating System!\n[connection terminated]\n..........................\n..........................\n..........................\n..........................\n-> Quit\n    <<exit Dialogue>>",
 		"position": {
 			"x": 168,
 			"y": 1785
