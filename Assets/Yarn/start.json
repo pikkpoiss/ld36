@@ -22,7 +22,7 @@
 	{
 		"title": "Alarmtest",
 		"tags": "",
-		"body": "<<start DoomClock 10>>\nSounding alarm in 10 seconds!\nEnter 'R' to reset.\nEnter 'S' to stop.\n\n-> Enter 'R'\n    [[Alarmtest]]\n-> Enter 'S'\n    <<stop DoomClock>>\n    Alarm cancelled!\n    [[Bin]]",
+		"body": "<<start DoomClock 5>>\nSounding alarm in 5 seconds!\nEnter 'R' to reset.\nEnter 'S' to stop.\n\n-> Enter 'R'\n    [[Alarmtest]]\n-> Enter 'S'\n    <<stop DoomClock>>\n    Alarm cancelled!\n    [[Bin]]",
 		"position": {
 			"x": -269,
 			"y": 808

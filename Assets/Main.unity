@@ -989,6 +989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storage: {fileID: 711635478}
   ui: {fileID: 711635477}
+  runner: {fileID: 711635479}
 --- !u!1001 &797644356
 Prefab:
   m_ObjectHideFlags: 0
@@ -2998,6 +2999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca5019ff30c54ba5b32fe68eeb3cae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogue: {fileID: 711635480}
 --- !u!114 &1969846782
 MonoBehaviour:
   m_ObjectHideFlags: 0
