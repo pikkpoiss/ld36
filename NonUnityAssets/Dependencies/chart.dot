@@ -7,14 +7,14 @@ digraph {
   enable_xor5 [label="Enable xor5", fillcolor=blue, fontcolor=white]
   enable_hack [label="Enable hack", fillcolor=blue, fontcolor=white]
   enable_invert [label="Enable invert", fillcolor=blue, fontcolor=white]
-  enable_add32 [label="Enable add32", fillcolor=blue, fontcolor=white]
+  enable_add10 [label="Enable add10", fillcolor=blue, fontcolor=white]
 
 
   puzzle_led [label="Puzzle: LED", fillcolor=purple, fontcolor=white]
   puzzle_pokemans [label="Puzzle: pokemans.exe", fillcolor=purple, fontcolor=white]
   puzzle_xor5 [label="Puzzle: xor5.exe.enc", fillcolor=purple, fontcolor=white]
   puzzle_email [label="Puzzle: email", fillcolor=purple, fontcolor=white]
-  puzzle_getroot [label="Puzzle: get root", fillcolor=purple, fontcolor=white]
+  puzzle_spaceplans [label="Puzzle: spaceplans", fillcolor=purple, fontcolor=white]
 
   boot [fillcolor=green]
   root [label="/", fillcolor=red, fontcolor=white]
@@ -30,23 +30,24 @@ digraph {
   usr_dcrease [label="/usr/dcrease", fillcolor=red, fontcolor=white]
   usr_dcrease_email [label="/usr/dcrease/email", fillcolor=red, fontcolor=white]
   usr_droskow [label="/usr/droskow", fillcolor=red, fontcolor=white]
+  {rank=same; usr_mbishop; usr_droskow}
 
-  root -> boot [color=blue]
-  enable_left -> boot [color=blue]
+  root -> boot
+  enable_left -> boot
 
-  dev -> root [color=blue]
-  bin -> root [color=blue]
-  usr -> root [color=blue]
+  dev -> root
+  bin -> root
+  usr -> root
 
   usr_mbishop -> usr
   usr_dcrease -> puzzle_pokemans
   usr_dcrease_email -> usr_dcrease
   usr_droskow -> usr
 
-  usr_root -> puzzle_getroot
-  usr_root -> usr [color=blue]
+  usr_root -> puzzle_email
+  usr_root -> usr
 
-  enable_hack -> bin [color=blue]
+  enable_hack -> bin
 
   puzzle_led -> dev
 
@@ -54,7 +55,7 @@ digraph {
 
   puzzle_xor5 -> enable_hack
   puzzle_xor5 -> enable_left
-  puzzle_xor5 -> enable_add32
+  puzzle_xor5 -> enable_add10
   puzzle_xor5 -> usr_droskow
 
   enable_xor5 -> puzzle_xor5
@@ -64,14 +65,14 @@ digraph {
   puzzle_email -> enable_invert
   puzzle_email -> usr_dcrease_email
 
-  puzzle_getroot -> enable_left
-  puzzle_getroot -> enable_xor5
-  puzzle_getroot -> enable_invert
-  puzzle_getroot -> enable_add32
-  puzzle_getroot -> usr
+  puzzle_spaceplans -> enable_left
+  puzzle_spaceplans -> enable_xor5
+  puzzle_spaceplans -> enable_invert
+  puzzle_spaceplans -> enable_add10
+  puzzle_spaceplans -> usr_root
 
   enable_invert -> puzzle_led
-  enable_add32 -> usr_dcrease
+  enable_add10 -> usr_dcrease
 
-  win -> usr_root
+  win -> puzzle_spaceplans
 }
