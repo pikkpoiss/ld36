@@ -31,7 +31,9 @@ public class Hackboy : MonoBehaviour {
     screenTextBuilder.AppendLine("ENABLED MODULES");
     screenTextBuilder.AppendLine("===============");
     foreach (BitmaskOperation op in operations) {
-      screenTextBuilder.AppendLine(op.Label());
+      if (op != null) {
+        screenTextBuilder.AppendLine(op.Label());
+      }
     }
     screenText.text = screenTextBuilder.ToString();
   }
@@ -42,7 +44,7 @@ public class Hackboy : MonoBehaviour {
 
   public void SetValue(string key, bool value) {
     switch (key) {
-      case "$hackboy_hack_path":
+      case "$hackboy_hack_module":
         SetText("Located hack program on $PATH!");
         SetLED(LED1, ledEnabledColor);
         break;

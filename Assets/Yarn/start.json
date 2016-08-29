@@ -92,7 +92,7 @@
 	{
 		"title": "Bin",
 		"tags": "",
-		"body": "$ list \nalarmtest.exe\nhack.exe\n>\n-> run alarmtest.exe\n    [[Alarmtest]]\n-> run hack.exe\n    Nothing to hack! \n    <<if $hack_module is false>>hack command is missing from $PATH!<<endif>>\n    <<if $hack_module is true>>Try running from other locations.<<endif>>\n    <<set $seen_path to true>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $hack_module is false and $seen_path is true>>\n    Done.\n    <<set $hack_module to true>>\n    [[Bin]]\n-> changedir ..\n    [[Root]]",
+		"body": "$ list \nalarmtest.exe\nhack.exe\n>\n-> run alarmtest.exe\n    [[Alarmtest]]\n-> run hack.exe\n    Nothing to hack! \n    <<if $hack_module is false>>hack command is missing from $PATH!<<endif>>\n    <<if $hack_module is true>>Try running from other locations.<<endif>>\n    <<set $seen_path to true>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $hack_module is false and $seen_path is true>>\n    Done.\n    <<set $hack_module to true>>\n    <<set $hackboy_hack_module to true>>\n    [[Bin]]\n-> changedir ..\n    [[Root]]",
 		"position": {
 			"x": -112,
 			"y": 537
@@ -102,7 +102,7 @@
 	{
 		"title": "DEBUG",
 		"tags": "",
-		"body": "-> Toggle Debug State Display\n   <<toggle DebugTextView>>\n   [[DEBUG]]\n-> State: hack_joke\n   <<set $hack_module to true>>\n   [[Usr.Mbishop]]\n-> State: pokemans\n   [[Pokemans]]\n-> Back\n   [[Root]]",
+		"body": "-> Toggle Debug State Display\n    <<toggle DebugTextView>>\n    [[DEBUG]]\n-> State: hack_joke\n    <<set $hack_module to true>>\n    [[Usr.Mbishop]]\n-> State: hack_xor5\n    <<set $hack_module to true>>\n    <<set $module_add10 to true>>\n    <<enable Dialogue add10>>\n    [[Usr.Droskow]]\n-> State: pokemans\n   [[Pokemans]]\n-> Back\n   [[Root]]",
 		"position": {
 			"x": 1559,
 			"y": 131
@@ -122,7 +122,7 @@
 	{
 		"title": "Usr.Dcrease",
 		"tags": "",
-		"body": "$ list\nadd32.module\nemail/\n>\n-> load add32.module <<if $module_add32 is false>>\n    Installing add32 module... done.\n    <<enable Dialogue add32>>\n    <<set $module_add32 to true>>\n    [[Usr.Dcrease]]\n-> changedir email\n    [[Usr.Dcrease.Email]]\n-> changedir ..\n    [[Usr]]\n",
+		"body": "$ list\nadd10.module\nemail/\n>\n-> load add10.module <<if $module_add10 is false>>\n    Installing add10 module... done.\n    <<enable Dialogue add10>>\n    <<set $module_add10 to true>>\n    [[Usr.Dcrease]]\n-> changedir email\n    [[Usr.Dcrease.Email]]\n-> changedir ..\n    [[Usr]]\n",
 		"position": {
 			"x": 1502,
 			"y": 820
