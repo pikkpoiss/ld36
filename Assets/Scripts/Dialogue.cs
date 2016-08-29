@@ -30,14 +30,19 @@ public class Dialogue : MonoBehaviour {
         "hack_email",
         BitmaskPuzzle.Get(
           BitmaskPuzzle.Difficulty.Difficult, 
-          BitmaskOperation.shiftLeft
+          BitmaskOperation.shiftLeft,
+          BitmaskOperation.xor5,
+          BitmaskOperation.invert
         ) 
       },
       {
-        "hack_root",
+        "hack_spaceplans",
         BitmaskPuzzle.Get(
           BitmaskPuzzle.Difficulty.Difficult,
-          BitmaskOperation.shiftLeft
+          BitmaskOperation.shiftLeft,
+          BitmaskOperation.xor5,
+          BitmaskOperation.add10,
+          BitmaskOperation.invert
         ) 
       }
     };

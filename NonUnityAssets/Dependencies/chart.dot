@@ -63,6 +63,7 @@ digraph {
   puzzle_email -> enable_hack
   puzzle_email -> enable_xor5
   puzzle_email -> enable_invert
+  puzzle_email -> enable_left
   puzzle_email -> usr_dcrease_email
 
   puzzle_spaceplans -> enable_left

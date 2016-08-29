@@ -12,7 +12,7 @@
 	{
 		"title": "Usr",
 		"tags": "",
-		"body": "$ list\ndcrease/\ndroskow/\nmbishop/\nroot/\n> \n-> changedir dcrease <<if $dcrease_readable is true>>\n    [[Usr.Dcrease]]\n-> changedir dcrease <<if $dcrease_readable is false>>\n    ERR: User dcrease has a protected\n    home directory!\n    [[Usr]]\n-> changedir droskow\n    [[Usr.Droskow]]\n-> changedir mbishop\n    [[Usr.Mbishop]]\n-> changedir root <<if $root_readable is true>>\n    [[Usr.Root]] \n-> changedir root <<if $root_readable is true>>\n    ERR: User root has a protected\n    home directory!\n    [[Usr]]\n-> changedir ..\n    [[Root]]\n",
+		"body": "$ list\ndcrease/\ndroskow/\nmbishop/\nroot/\n> \n-> changedir dcrease <<if $hackboy_dcrease_readable is true>>\n    [[Usr.Dcrease]]\n-> changedir dcrease <<if $hackboy_dcrease_readable is false>>\n    ERR: User dcrease has a protected\n    home directory!\n    [[Usr]]\n-> changedir droskow\n    [[Usr.Droskow]]\n-> changedir mbishop\n    [[Usr.Mbishop]]\n-> login root && changedir root <<if $hackboy_root_readable is true>>\n    Enter password: myluggage1234\n    You are now logged in as user: root\n    [[Usr.Root]] \n-> changedir root <<if $hackboy_root_readable is false>>\n    ERR: User root has a protected\n    home directory!\n    [[Usr]]\n-> changedir ..\n    [[Root]]\n",
 		"position": {
 			"x": 579,
 			"y": 534
@@ -52,19 +52,19 @@
 	{
 		"title": "Hack.Xor5",
 		"tags": "",
-		"body": "<<setpuzzle Dialogue hack_xor5>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Xor5]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Droskow]]\n-> SUCCESS\n    <<clearpuzzle Dialogue>>\n    Decrypted module!\n    Installing xor5 module... done.\n    <<enable Dialogue xor5>>\n    <<set $module_xor5 to true>>\n    [[Usr.Droskow]]\n-> FAILURE\n    Failure!\n    [[Usr.Droskow]]\n    ",
+		"body": "<<setpuzzle Dialogue hack_xor5>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Xor5]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Droskow]]\n-> SUCCESS\n    <<clearpuzzle Dialogue>>\n    Decrypted module!\n    Installing xor5 module... done.\n    <<set $hackboy_xor5_module to true>>\n    <<enable Dialogue xor5>>\n    <<set $module_xor5 to true>>\n    [[Usr.Droskow]]\n-> FAILURE\n    Failure!\n    [[Usr.Droskow]]\n    ",
 		"position": {
 			"x": 1813,
-			"y": 838
+			"y": 839
 		},
 		"colorID": 0
 	},
 	{
 		"title": "Usr.Root",
 		"tags": "",
-		"body": "$ list\npasswords.txt.enc\n>\n-> run hack passwords.txt.enc <<if $hack_module is true>>\n    [[Hack1]]\n-> open passwords.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    CE C0 95 C5 F8 25 B0 24 38 A3 \n    58 5E DA 89 3E EF 9D 8B 1B 44\n    EF 2A AD F1 94 E9 FE 82 29 F8\n    F0 8B A2 DF 5B F0\n    --- END ENCRYPTED DATA ---\n    [[Usr.Root]]\n-> changedir ..\n    [[Usr]]",
+		"body": "$ list\nspaceplans.txt.enc\n>\n-> run hack spaceplans.txt.enc\n    [[Hack.Spaceplans]]\n-> changedir ..\n    [[Usr]]",
 		"position": {
-			"x": 376,
+			"x": 378,
 			"y": 829
 		},
 		"colorID": 0
@@ -82,7 +82,7 @@
 	{
 		"title": "Usr.Mbishop",
 		"tags": "",
-		"body": "$ list\npokemans.exe\njoke.txt.enc\n>\n-> open joke.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    23 5A 79 B3 27 0D 79 05 05 E0\n    BE A2 CF 5C 14 9F 90 38 82 1B\n    --- END ENCRYPTED DATA ---\n    [[Usr.Mbishop]]\n-> hack joke.txt.enc <<if $hack_module is true>>\n    [[Hack.Joke]]\n-> run pokemans.exe\n    [[Pokemans]]\n-> changedir ..\n    [[Usr]]",
+		"body": "$ list\npokemans.exe\njoke.txt.enc\n>\n-> open joke.txt.enc\n    --- BEGIN ENCRYPTED DATA ---\n    23 5A 79 B3 27 0D 79 05 05 E0\n    BE A2 CF 5C 14 9F 90 38 82 1B\n    --- END ENCRYPTED DATA ---\n    [[Usr.Mbishop]]\n-> hack joke.txt.enc <<if $hackboy_hack_module is true>>\n    [[Hack.Joke]]\n-> run pokemans.exe\n    [[Pokemans]]\n-> changedir ..\n    [[Usr]]",
 		"position": {
 			"x": 742,
 			"y": 813
@@ -92,7 +92,7 @@
 	{
 		"title": "Bin",
 		"tags": "",
-		"body": "$ list \nalarmtest.exe\nhack.exe\n>\n-> run alarmtest.exe\n    [[Alarmtest]]\n-> run hack.exe\n    Nothing to hack! \n    <<if $hack_module is false>>hack command is missing from $PATH!<<endif>>\n    <<if $hack_module is true>>Try running from other locations.<<endif>>\n    <<set $seen_path to true>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $hack_module is false and $seen_path is true>>\n    Done.\n    <<set $hack_module to true>>\n    <<set $hackboy_hack_module to true>>\n    [[Bin]]\n-> changedir ..\n    [[Root]]",
+		"body": "$ list \nalarmtest.exe\nhack.exe\n>\n-> run alarmtest.exe\n    [[Alarmtest]]\n-> run hack.exe\n    Nothing to hack! \n    <<if $hackboy_hack_module is false>>hack command is missing from $PATH!<<endif>>\n    <<if $hackboy_hack_module is true>>Try running from other locations.<<endif>>\n    <<set $seen_path to true>>\n    [[Bin]]\n-> update PATH /bin/hack <<if $hackboy_hack_module is false and $seen_path is true>>\n    Done.\n    <<set $hackboy_hack_module to true>>\n    [[Bin]]\n-> changedir ..\n    [[Root]]",
 		"position": {
 			"x": -112,
 			"y": 537
@@ -102,7 +102,7 @@
 	{
 		"title": "DEBUG",
 		"tags": "",
-		"body": "-> Toggle Debug State Display\n    <<toggle DebugTextView>>\n    [[DEBUG]]\n-> State: hack_joke\n    <<set $hack_module to true>>\n    [[Usr.Mbishop]]\n-> State: hack_xor5\n    <<set $hack_module to true>>\n    <<set $module_add10 to true>>\n    <<enable Dialogue add10>>\n    [[Usr.Droskow]]\n-> State: pokemans\n   [[Pokemans]]\n-> Back\n   [[Root]]",
+		"body": "-> Toggle Debug State Display\n    <<toggle DebugTextView>>\n    [[DEBUG]]\n-> Hack\n    -> State: hack_joke\n        <<set $hackboy_hack_module to true>>\n        [[Usr.Mbishop]]\n    -> State: hack_xor5\n        <<set $hackboy_hack_module to true>>\n        <<enable Dialogue shiftleft>>\n        <<enable Dialogue add10>>\n        [[Usr.Droskow]]\n    -> State: hack_email\n        <<set $hackboy_hack_module to true>>\n        <<set $hackboy_dcrease_readable to true>>\n        <<enable Dialogue xor5>>\n        <<enable Dialogue invert>>\n        [[Usr.Dcrease.Email]]\n    -> State: hack_spaceplans\n        <<set $hackboy_hack_module to true>>\n        <<set $hackboy_root_readable to true>>\n        <<set $hackboy_dcrease_readable to true>>\n        <<enable Dialogue xor5>>\n        <<enable Dialogue invert>>\n        <<enable Dialogue shiftleft>>\n        <<enable Dialogue add10>>\n        [[Usr.Root]]\n-> State: pokemans\n    [[Pokemans]]\n-> State: win\n    [[Win]]\n-> Back\n    [[Root]]",
 		"position": {
 			"x": 1559,
 			"y": 131
@@ -112,7 +112,7 @@
 	{
 		"title": "Usr.Droskow",
 		"tags": "",
-		"body": "$ list\nxor5.module.enc\n>\n\n-> open xor5.module.enc\n    --- BEGIN ENCRYPTED DATA ---\n    CE C0 95 C5 F8 25 B0 24 38 A3 \n    58 5E DA 89 3E EF 9D 8B 1B 44\n    EF 2A AD F1 94 E9 FE 82 29 F8\n    F0 8B A2 DF 5B F0\n    --- END ENCRYPTED DATA ---\n    [[Usr.Droskow]]\n-> hack xor5.module.enc <<if $hack_module is true>>\n    [[Hack.Xor5]]\n-> changedir ..\n    [[Usr]]",
+		"body": "$ list\nxor5.module.enc\n>\n\n-> open xor5.module.enc\n    --- BEGIN ENCRYPTED DATA ---\n    CE C0 95 C5 F8 25 B0 24 38 A3 \n    58 5E DA 89 3E EF 9D 8B 1B 44\n    EF 2A AD F1 94 E9 FE 82 29 F8\n    F0 8B A2 DF 5B F0\n    --- END ENCRYPTED DATA ---\n    [[Usr.Droskow]]\n-> hack xor5.module.enc <<if $hackboy_hack_module is true and $hackboy_module_xor5 is false>>\n    [[Hack.Xor5]]\n-> changedir ..\n    [[Usr]]",
 		"position": {
 			"x": 1808,
 			"y": 547
@@ -122,9 +122,9 @@
 	{
 		"title": "Usr.Dcrease",
 		"tags": "",
-		"body": "$ list\nadd10.module\nemail/\n>\n-> load add10.module <<if $module_add10 is false>>\n    Installing add10 module... done.\n    <<enable Dialogue add10>>\n    <<set $module_add10 to true>>\n    [[Usr.Dcrease]]\n-> changedir email\n    [[Usr.Dcrease.Email]]\n-> changedir ..\n    [[Usr]]\n",
+		"body": "$ list\nadd10.module\nemail/\n>\n-> load add10.module <<if $hackboy_module_add10 is false>>\n    Installing add10 module... done.\n    <<enable Dialogue add10>>\n    <<set $hackboy_module_add10 to true>>\n    [[Usr.Dcrease]]\n-> changedir email\n    [[Usr.Dcrease.Email]]\n-> changedir ..\n    [[Usr]]\n",
 		"position": {
-			"x": 1502,
+			"x": 1398,
 			"y": 820
 		},
 		"colorID": 0
@@ -142,9 +142,9 @@
 	{
 		"title": "Pokemans.Win",
 		"tags": "",
-		"body": "You collected all [$pokeman_collected] Pokemans!\nA new high score!\nEnter your initials:\n> \n\n-> '); SET READABLE $HOME; --\n    ERR: Output is \"SUCCESS: Set\n    /usr/dcrease world-readable\"\n    Stopping pokemans.exe\n    <<set $dcrease_readable to true>>\n    [[Usr.Mbishop]]",
+		"body": "You collected all [$pokeman_collected] Pokemans!\nA new high score!\nEnter your initials:\n> \n\n-> '); SET READABLE $HOME; --\n    ERR: Output is \"SUCCESS: Set\n    /usr/dcrease world-readable\"\n    Stopping pokemans.exe\n    <<set $hackboy_dcrease_readable to true>>\n    [[Usr.Mbishop]]",
 		"position": {
-			"x": 762,
+			"x": 763,
 			"y": 1449
 		},
 		"colorID": 0
@@ -152,12 +152,12 @@
 	{
 		"title": "Usr.Dcrease.Email",
 		"tags": "",
-		"body": "$ list\n>\n-> changedir ..\n   [[Usr.Dcrease]]\n",
+		"body": "$ list\n19820713.001.email.enc\n>\n-> open 19820713.001.email.enc\n    --- BEGIN ENCRYPTED DATA ---\n    58 5E DA 89 3E EF 9D 8B 1B 44\n    CE C0 95 C5 F8 25 B0 24 38 A3 \n    82 29 F8 EF 2A\n    --- END ENCRYPTED DATA ---\n    [[Usr.Dcrease.Email]]\n-> hack 19820713.001.email.enc <<if $hackboy_hack_module is true>>\n    [[Hack.Email]]\n-> changedir ..\n    [[Usr.Dcrease]]",
 		"position": {
-			"x": 1510,
-			"y": 1094
+			"x": 1602,
+			"y": 1069
 		},
-		"colorID": 0
+		"colorID": 6
 	},
 	{
 		"title": "Hack.Joke",
@@ -166,6 +166,36 @@
 		"position": {
 			"x": 522,
 			"y": 1450
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Hack.Email",
+		"tags": "",
+		"body": "<<setpuzzle Dialogue hack_email>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Email]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Dcrease.Email]]\n-> SUCCESS\n    <<clearpuzzle Dialogue>>\n    Decrypted file! Contents:\n    \n    From: root@spacehq.govt\n    To: dcrease@spacehq.govt\n    Subject: Login\n\n    Donald, since you keep losing it\n    the password for the root account\n    is `myluggage1234`.\n    <<set $hackboy_root_readable to true>>\n    [[Usr.Dcrease.Email]]\n-> FAILURE\n    Failure!\n    [[Usr.Dcrease.Email]]\n    ",
+		"position": {
+			"x": 1601,
+			"y": 1371
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Hack.Spaceplans",
+		"tags": "",
+		"body": "<<setpuzzle Dialogue hack_spaceplans>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Spaceplans]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Root]]\n-> SUCCESS\n    <<clearpuzzle Dialogue>>\n    Decrypted file! Sending to\n    Hack Boy™ device... OK\n    [[Win]]\n-> FAILURE\n    Failure!\n    [[Usr.Root]]\n    ",
+		"position": {
+			"x": 155,
+			"y": 1102
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Win",
+		"tags": "",
+		"body": "<<set $hackboy_won to true>>\n> formatdisk /\nDeleting all files! You sure? [Yn]\n> Y\nDone!\n> logout\nThank you for using\nSecure Operating System!\n[connection terminated]\n..........................\n..........................\n..........................\n..........................\n..........................\n..........................\n..........................\n..........................\n<<exit Dialogue>>",
+		"position": {
+			"x": 168,
+			"y": 1785
 		},
 		"colorID": 0
 	}

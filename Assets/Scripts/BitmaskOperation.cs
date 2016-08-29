@@ -6,6 +6,24 @@
   override public int Act(int input) {
     return input << 1;
   }
+
+  override public int LEDIndex() {
+    return 0;
+  }
+}
+
+public class Invert : BitmaskOperation {
+  override public string Label() {
+    return "Invert";
+  }
+
+  override public int Act(int input) {
+    return ~input;
+  }
+
+  override public int LEDIndex() {
+    return 1;
+  }
 }
 
 public class Add10 : BitmaskOperation {
@@ -15,6 +33,10 @@ public class Add10 : BitmaskOperation {
 
   override public int Act(int input) {
     return input + 32;
+  }
+
+  override public int LEDIndex() {
+    return 2;
   }
 }
 
@@ -26,15 +48,9 @@ public class Xor5 : BitmaskOperation {
   override public int Act(int input) {
     return input ^ 5;
   }
-}
 
-public class Invert : BitmaskOperation {
-  override public string Label() {
-    return "Invert";
-  }
-
-  override public int Act(int input) {
-    return ~input;
+  override public int LEDIndex() {
+    return 3;
   }
 }
 
@@ -64,6 +80,10 @@ public class BitmaskOperation  {
 
   virtual public int Act(int input) {
     return input;
+  }
+
+  virtual public int LEDIndex() {
+    return -1;
   }
 
   virtual public void Apply(ref BitmaskPuzzle puzzle) {
