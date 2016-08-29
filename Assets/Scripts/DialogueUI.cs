@@ -130,13 +130,6 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
     } else {
       lineText.text = lineText.text + renderedText;
     }
-    //SetContinuePromptActive(true);
-    //yield return new WaitForSeconds(2.0f);
-    //while (Input.anyKeyDown == false) {
-    //  yield return null;
-    //}
-    //lineText.gameObject.SetActive(false);
-    //SetContinuePromptActive(false);
   }
 
   public override IEnumerator RunOptions(Yarn.Options optionsCollection, Yarn.OptionChooser optionChooser) {
@@ -199,6 +192,10 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
     while (SetSelectedOption != null) {
       yield return null;
     }
+    DisableButtons();
+  }
+
+  private void DisableButtons() {
     foreach (var button in optionButtons) {
       // Change selection or else the selected choice won't be highlighted on the subsequent screen.
       button.GetComponent<Button>().Select();
@@ -214,9 +211,8 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
       Debug.LogWarningFormat("Did not find selected option {0} in map!", selectedOption);
       SetSelectedOption(selectedOption);
     }
-    SetSelectedOption = null; 
-    SetSelectedOptionMap.Clear();
-    lineText.text = "";
+    ClearOptionMap();
+    ClearLineText();
   }
 
   public override IEnumerator RunCommand(Yarn.Command command) {
@@ -257,5 +253,23 @@ public class DialogueUI : Yarn.Unity.DialogueUIBehaviour {
     bitmasks.SetPuzzle(null);
     bitmasks.gameObject.SetActive(false);
     puzzle_ = null;
+  }
+
+  private void ClearOptionMap() {
+    SetSelectedOption = null; 
+    SetSelectedOptionMap.Clear();
+  }
+
+  private void ClearLineText() {
+    lineText.text = "";
+  }
+
+  public void ResetAll() {
+    ClearOptionMap();
+    ClearLineText();
+    ClearPuzzle();
+    DisableButtons();
+    SetDialogueContainerActive(false);
+    SetContinuePromptActive(false);
   }
 }

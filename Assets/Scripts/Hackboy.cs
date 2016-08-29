@@ -80,6 +80,15 @@ public class Hackboy : MonoBehaviour {
         screenTextBuilder.AppendLine("Congrats! Wipe the system and exfiltrate the facility!");
         SetText(screenTextBuilder.ToString());
         break;
+      case "$hackboy_lost":
+        screenTextBuilder.Length = 0;
+        screenTextBuilder.AppendLine("==================");
+        screenTextBuilder.AppendLine("      FAILURE     ");
+        screenTextBuilder.AppendLine("==================");
+        screenTextBuilder.AppendLine("You have been detected! Exfiltrate the facility!");
+        SetText(screenTextBuilder.ToString());
+        break;
+
     }
   }
 

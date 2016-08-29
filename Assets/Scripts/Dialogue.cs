@@ -6,6 +6,7 @@ using Yarn.Unity;
 public class Dialogue : MonoBehaviour {
   public DialogueStorage storage;
   public DialogueUI ui;
+  public DialogueRunner runner;
 
   private Dictionary<string, BitmaskPuzzle> puzzles_;
 
@@ -75,6 +76,12 @@ public class Dialogue : MonoBehaviour {
     storage.SetValue("$puzzle_target", GetPuzzleValue(puzzle.targetValue));
     storage.SetValue("$puzzle_active", GetPuzzleValue(puzzle.currentValue));
     ui.SetPuzzle(ref puzzle);
+  }
+
+  public void OnDoomClockExpired() {
+    ui.ResetAll();
+    runner.startNode = "Fail";
+    runner.ResetDialogue();
   }
     
   private string GetPuzzleValue(int value) {

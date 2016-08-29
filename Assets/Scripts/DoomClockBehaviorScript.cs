@@ -4,6 +4,7 @@ using System.Collections;
 using Yarn.Unity;
 
 public class DoomClockBehaviorScript : MonoBehaviour {
+  public Dialogue dialogue;
 
   private Text text;
   private float seconds_left = -1f;
@@ -32,7 +33,12 @@ public class DoomClockBehaviorScript : MonoBehaviour {
   void Update() {
     if (enabled) {
       seconds_left -= Time.deltaTime;
-      text.text = seconds_left.ToString("#.00");
+      if (seconds_left < 0.0f) {
+        dialogue.OnDoomClockExpired();
+        StopClock();
+      } else {
+        text.text = seconds_left.ToString("#.00");
+      }
     }
   }
 }
