@@ -1,0 +1,4 @@
+ca0bc0b Fix ASCII art
+a986308 Change Hackboy screen colors on output
+ecbc1cf Warn player if attempted hack is missing modules
+cad1780 1.0.1 OSX release
