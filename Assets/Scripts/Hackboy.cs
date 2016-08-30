@@ -32,13 +32,15 @@ public class Hackboy : MonoBehaviour {
   }
 
   public void SetText(string text) {
+    if (screenText.text == text) {
+      return;
+    }
     screenColorIndex = (screenColorIndex + 1) % screenColors.Length;
     screenCamera.backgroundColor = screenColors[screenColorIndex];
     screenText.text = text;
   }
 
   public void SetEnabledOperations(HashSet<BitmaskOperation> operations) {
-    DisableLEDs();
     screenTextBuilder.Length = 0;
     screenTextBuilder.AppendLine("ENABLED MODULES");
     screenTextBuilder.AppendLine("===============");
@@ -47,7 +49,7 @@ public class Hackboy : MonoBehaviour {
         screenTextBuilder.AppendLine(op.Label());
         switch (op.LEDIndex()) {
           case 0:
-            SetLED(LED1, ledEnabledColor);
+            // Enabled by default so we won't add an LED.
             break;
           case 1:
             SetLED(LED2, ledEnabledColor);
@@ -64,14 +66,24 @@ public class Hackboy : MonoBehaviour {
     SetText(screenTextBuilder.ToString());
   }
 
-  public void SetEnabledPuzzle(BitmaskPuzzle puzzle, HashSet<BitmaskOperation> operations) {
-    SetEnabledOperations(operations);
+  public void SetEnabledPuzzle(BitmaskPuzzle puzzle, HashSet<BitmaskOperation> enabled) {
+    if (puzzle.HasRequiredModules(enabled)) {
+      SetEnabledOperations(enabled);
+    } else {
+      screenTextBuilder.Length = 0;
+      screenTextBuilder.AppendLine("==================");
+      screenTextBuilder.AppendLine("      WARNING     ");
+      screenTextBuilder.AppendLine("==================");
+      screenTextBuilder.AppendLine("Required module missing! Hack may not be possible!");
+      SetText(screenTextBuilder.ToString());
+    }
   }
 
   public void SetValue(string key, bool value) {
     switch (key) {
       case "$hackboy_hack_module":
         SetText("Located hack program on $PATH!");
+        SetLED(LED1, ledEnabledColor);
         break;
       case "$hackboy_root_readable":
         SetText("Path /usr/root is now readable!");

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class BitmaskPuzzle {
   private int currentValue_;
   private int maxBits = 8;
+  private HashSet<BitmaskOperation> required_;
 
   private int targetValue_;
   public int targetValue { 
@@ -39,6 +40,7 @@ public class BitmaskPuzzle {
   }
 
   BitmaskPuzzle(Difficulty diff, HashSet<BitmaskOperation> required) {
+    required_ = required;
     List<BitmaskOperation> operations = new List<BitmaskOperation>(required);
     int addl = (int)Mathf.Max((int)diff, (int)operations.Count) - operations.Count;
     while (addl > 0) {
@@ -58,5 +60,10 @@ public class BitmaskPuzzle {
     if (attempts == 10) {
       Debug.LogFormat("Couldn't generate a unique target != start value puzzle!  Operations were {0}", required);
     }
+  }
+
+  public bool HasRequiredModules(HashSet<BitmaskOperation> enabled) {
+    Debug.LogFormat("HasRequiredModules {0} of {1} is {2}", required_.ToString(), enabled.ToString(), required_.IsSubsetOf(enabled));
+    return required_.IsSubsetOf(enabled);
   }
 }

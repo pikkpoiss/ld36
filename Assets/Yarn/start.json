@@ -175,7 +175,7 @@
 		"body": "<<setpuzzle Dialogue hack_email>>\nEnter password:\n0x[$puzzle_target]\n0x[$puzzle_active]\n>\n-> COMMANDS\n    [[Hack.Email]]\n-> ABORT\n    <<clearpuzzle Dialogue>>\n    [[Usr.Dcrease.Email]]\n-> SUCCESS\n    <<clearpuzzle Dialogue>>\n    Decrypted file! Contents:\n    \n    From: root@spacehq.govt\n    To: dcrease@spacehq.govt\n    Subject: Login\n\n    Donald, since you keep losing it\n    the password for the root account\n    is `myluggage1234`.\n    <<set $hackboy_root_readable to true>>\n    [[Usr.Dcrease.Email]]\n-> FAILURE\n    Failure!\n    [[Usr.Dcrease.Email]]\n    ",
 		"position": {
 			"x": 1601,
-			"y": 1371
+			"y": 1373
 		},
 		"colorID": 0
 	},

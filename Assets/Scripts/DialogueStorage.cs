@@ -122,6 +122,18 @@ public class DialogueStorage : VariableStorageBehaviour {
   }
 
   public void EnablePuzzle(ref BitmaskPuzzle puzzle) {
+    SetValue("$puzzle_target", GetPuzzleValue(puzzle.targetValue));
+    SetValue("$puzzle_active", GetPuzzleValue(puzzle.currentValue));
     hackboy.SetEnabledPuzzle(puzzle, enabledOperations_);
+  }
+
+  public void ClearPuzzle() {
+    SetValue("$puzzle_target", Yarn.Value.NULL);
+    SetValue("$puzzle_active", Yarn.Value.NULL);
+    hackboy.SetEnabledOperations(enabledOperations_);
+  }
+    
+  private string GetPuzzleValue(int value) {
+    return value.ToString("X4");
   }
 }

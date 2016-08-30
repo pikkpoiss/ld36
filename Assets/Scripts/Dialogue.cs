@@ -62,8 +62,7 @@ public class Dialogue : MonoBehaviour {
   [YarnCommand("clearpuzzle")]
   public void ClearPuzzle() {
     ui.ClearPuzzle();
-    storage.SetValue("$puzzle_target", Yarn.Value.NULL);
-    storage.SetValue("$puzzle_active", Yarn.Value.NULL);
+    storage.ClearPuzzle();
   }
 
   [YarnCommand("setpuzzle")]
@@ -73,18 +72,13 @@ public class Dialogue : MonoBehaviour {
       Debug.LogErrorFormat("Could not find puzzle with key {0}", key);
       return;
     }
-    storage.SetValue("$puzzle_target", GetPuzzleValue(puzzle.targetValue));
-    storage.SetValue("$puzzle_active", GetPuzzleValue(puzzle.currentValue));
     ui.SetPuzzle(ref puzzle);
+    storage.EnablePuzzle(ref puzzle);
   }
 
   public void OnDoomClockExpired() {
     ui.ResetAll();
     runner.startNode = "Fail";
     runner.ResetDialogue();
-  }
-    
-  private string GetPuzzleValue(int value) {
-    return value.ToString("X4");
   }
 }
