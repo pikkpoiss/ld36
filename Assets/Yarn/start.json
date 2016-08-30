@@ -32,7 +32,7 @@
 	{
 		"title": "Start",
 		"tags": "",
-		"body": "Booting...\n _______  _______  _______ \n|       ||       ||       |\n|  _____||   _   ||  _____|\n| |_____ |  | |  || |_____ \n|_____  ||  |_|  ||_____  |\n _____| ||       | _____| |\n|_______||_______||_______|\n\nSECURE OPERATING SYSTEM v0.9\n \"We're sure, it's secure\"\n<<enable Dialogue shiftleft>>\n[[Root]]",
+		"body": "Booting...\n._______  _______  _______ \n|       ||       ||       |\n|  _____||   _   ||  _____|\n| |_____ |  | |  || |_____ \n|_____  ||  |_|  ||_____  |\n._____| ||       | _____| |\n|_______||_______||_______|\n\nSECURE OPERATING SYSTEM v0.9\n \"We're sure, it's secure\"\n<<enable Dialogue shiftleft>>\n[[Root]]",
 		"position": {
 			"x": 546,
 			"y": -104
