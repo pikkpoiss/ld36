@@ -102,7 +102,7 @@
 	{
 		"title": "DEBUG",
 		"tags": "",
-		"body": "-> Toggle Debug State Display\n    <<toggle DebugTextView>>\n    [[DEBUG]]\n-> Hack\n    -> State: hack_joke\n        <<set $hackboy_hack_module to true>>\n        [[Usr.Mbishop]]\n    -> State: hack_xor5\n        <<set $hackboy_hack_module to true>>\n        <<enable Dialogue shiftleft>>\n        <<enable Dialogue add10>>\n        [[Usr.Droskow]]\n    -> State: hack_email\n        <<set $hackboy_hack_module to true>>\n        <<set $hackboy_dcrease_readable to true>>\n        <<enable Dialogue xor5>>\n        <<enable Dialogue invert>>\n        [[Usr.Dcrease.Email]]\n    -> State: hack_spaceplans\n        <<set $hackboy_hack_module to true>>\n        <<set $hackboy_root_readable to true>>\n        <<set $hackboy_dcrease_readable to true>>\n        <<enable Dialogue xor5>>\n        <<enable Dialogue invert>>\n        <<enable Dialogue shiftleft>>\n        <<enable Dialogue add10>>\n        [[Usr.Root]]\n-> State\n    -> State: pokemans\n        [[Pokemans]]\n    -> State: win\n        [[Win]]\n    -> State: fail\n        [[Fail]]\n-> Back\n    [[Root]]",
+		"body": "-> Toggle Debug State Display\n    <<toggle DebugTextView>>\n    [[DEBUG]]\n-> Hack\n    -> State: hack_joke\n        <<set $hackboy_hack_module to true>>\n        [[Usr.Mbishop]]\n    -> State: hack_xor5\n        <<set $hackboy_hack_module to true>>\n        <<enable Dialogue shiftleft>>\n        <<enable Dialogue add32>>\n        [[Usr.Droskow]]\n    -> State: hack_email\n        <<set $hackboy_hack_module to true>>\n        <<set $hackboy_dcrease_readable to true>>\n        <<enable Dialogue xor5>>\n        <<enable Dialogue invert>>\n        [[Usr.Dcrease.Email]]\n    -> State: hack_spaceplans\n        <<set $hackboy_hack_module to true>>\n        <<set $hackboy_root_readable to true>>\n        <<set $hackboy_dcrease_readable to true>>\n        <<enable Dialogue xor5>>\n        <<enable Dialogue invert>>\n        <<enable Dialogue shiftleft>>\n        <<enable Dialogue add32>>\n        [[Usr.Root]]\n-> State\n    -> State: pokemans\n        [[Pokemans]]\n    -> State: win\n        [[Win]]\n    -> State: fail\n        [[Fail]]\n-> Back\n    [[Root]]",
 		"position": {
 			"x": 1559,
 			"y": 131
@@ -122,7 +122,7 @@
 	{
 		"title": "Usr.Dcrease",
 		"tags": "",
-		"body": "$ list\nadd10.module\nemail/\n>\n-> load add10.module <<if $hackboy_module_add10 is false>>\n    Installing add10 module... done.\n    <<enable Dialogue add10>>\n    <<set $hackboy_module_add10 to true>>\n    [[Usr.Dcrease]]\n-> changedir email\n    [[Usr.Dcrease.Email]]\n-> changedir ..\n    [[Usr]]\n",
+		"body": "$ list\nadd32.module\nemail/\n>\n-> load add32.module <<if $hackboy_module_add32 is false>>\n    Installing add32 module... done.\n    <<enable Dialogue add32>>\n    <<set $hackboy_module_add32 to true>>\n    [[Usr.Dcrease]]\n-> changedir email\n    [[Usr.Dcrease.Email]]\n-> changedir ..\n    [[Usr]]\n",
 		"position": {
 			"x": 1398,
 			"y": 820

@@ -23,7 +23,7 @@ public class Dialogue : MonoBehaviour {
         "hack_xor5",
         BitmaskPuzzle.Get(
           BitmaskPuzzle.Difficulty.Medium,
-          BitmaskOperation.add10,
+          BitmaskOperation.add32,
           BitmaskOperation.shiftLeft
         ) 
       },
@@ -42,7 +42,7 @@ public class Dialogue : MonoBehaviour {
           BitmaskPuzzle.Difficulty.Difficult,
           BitmaskOperation.shiftLeft,
           BitmaskOperation.xor5,
-          BitmaskOperation.add10,
+          BitmaskOperation.add32,
           BitmaskOperation.invert
         ) 
       }

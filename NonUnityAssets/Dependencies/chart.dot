@@ -7,7 +7,7 @@ digraph {
   enable_xor5 [label="Enable xor5", fillcolor=blue, fontcolor=white]
   enable_hack [label="Enable hack", fillcolor=blue, fontcolor=white]
   enable_invert [label="Enable invert", fillcolor=blue, fontcolor=white]
-  enable_add10 [label="Enable add10", fillcolor=blue, fontcolor=white]
+  enable_add32 [label="Enable add32", fillcolor=blue, fontcolor=white]
 
 
   puzzle_led [label="Puzzle: LED", fillcolor=purple, fontcolor=white]
@@ -55,7 +55,7 @@ digraph {
 
   puzzle_xor5 -> enable_hack
   puzzle_xor5 -> enable_left
-  puzzle_xor5 -> enable_add10
+  puzzle_xor5 -> enable_add32
   puzzle_xor5 -> usr_droskow
 
   enable_xor5 -> puzzle_xor5
@@ -69,11 +69,11 @@ digraph {
   puzzle_spaceplans -> enable_left
   puzzle_spaceplans -> enable_xor5
   puzzle_spaceplans -> enable_invert
-  puzzle_spaceplans -> enable_add10
+  puzzle_spaceplans -> enable_add32
   puzzle_spaceplans -> usr_root
 
   enable_invert -> puzzle_led
-  enable_add10 -> usr_dcrease
+  enable_add32 -> usr_dcrease
 
   win -> puzzle_spaceplans
 }
