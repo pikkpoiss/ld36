@@ -12,11 +12,16 @@ public class Hackboy : MonoBehaviour {
   public GameObject LED4;
   public Color ledEnabledColor;
   public Color ledDisabledColor;
+  public Camera screenCamera;
+  public Color[] screenColors;
+  private int screenColorIndex;
 
   private StringBuilder screenTextBuilder = new StringBuilder();
 
   public void Awake() {
     DisableLEDs();
+    screenColorIndex = -1;
+    SetText("HACKBOY OS\n(C)1982");
   }
 
   private void DisableLEDs() {
@@ -27,6 +32,8 @@ public class Hackboy : MonoBehaviour {
   }
 
   public void SetText(string text) {
+    screenColorIndex = (screenColorIndex + 1) % screenColors.Length;
+    screenCamera.backgroundColor = screenColors[screenColorIndex];
     screenText.text = text;
   }
 
@@ -54,7 +61,7 @@ public class Hackboy : MonoBehaviour {
         }
       }
     }
-    screenText.text = screenTextBuilder.ToString();
+    SetText(screenTextBuilder.ToString());
   }
 
   public void SetEnabledPuzzle(BitmaskPuzzle puzzle, HashSet<BitmaskOperation> operations) {
